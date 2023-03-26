@@ -1,6 +1,8 @@
 package earth.defense.corps.edc.domain.member.model;
 
 
+import earth.defense.corps.edc.domain.character.model.CharacterStat;
+import earth.defense.corps.edc.domain.stage.model.Stage;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -27,10 +29,10 @@ public class Member {
     @Column(name = "MEMBER_NAME",nullable = false, unique = true)
     private String name;
 
-    @Column(name = "POSSESSING_GOLD",length=100)
+    @Column(name = "POSSESSING_GOLD")
     private int possessing_gold;
 
-    @Column(name ="POSSESSING_JEM" ,length=100)
+    @Column(name ="POSSESSING_JEM")
     private int possessing_jem;
 
 
