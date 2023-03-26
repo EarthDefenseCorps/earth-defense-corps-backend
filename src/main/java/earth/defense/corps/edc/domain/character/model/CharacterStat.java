@@ -19,7 +19,7 @@ public class CharacterStat {
     @Id
     @GeneratedValue
     @Column(name = "CHARACTER_ID")
-    private Long character_stat_id;
+    private Long id;
     @Column(name = "CHARACTER_NAME")
     private String name;
 
