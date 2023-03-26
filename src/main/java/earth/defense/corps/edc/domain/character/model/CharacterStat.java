@@ -19,43 +19,43 @@ public class CharacterStat {
     @Id
     @GeneratedValue
     @Column(name = "CHARACTER_ID")
-    private Long character_stat_id;
-    @Column(length = 100)
+    private Long id;
+    @Column(name = "CHARACTER_NAME")
     private String name;
 
     @OneToMany(fetch = LAZY)
     @JoinColumn(name = "CHARACTER_ID")
-    private List<earth.defense.corps.edc.domain.member.model.Member> members = new ArrayList<Member>();
+    private List<Member> members = new ArrayList<Member>();
 
 //    @OneToOne(fetch = LAZY)
 //    @JoinColumn(name = "")
 
-    @Column(length = 100)
-    private int character_strength;
+    @Column(name = "CHARACTER_STRENGTH")
+    private int strength;
 
-    @Column(length = 100)
-    private int character_attack_damage;
+    @Column(name = "CHARACTER_ATTACK_DAMAGE")
+    private int attack_damage;
 
-    @Column(length = 100)
-    private int character_attack_speed;
+    @Column(name = "CHARACTER_ATTACK_SPEED")
+    private int attack_speed;
 
-    @Column(length = 100)
-    private int character_defense_strength;
+    @Column(name = "CHARACTER_DEFENSE_STRENGTH")
+    private int defense_strength;
 
-    @Column(length = 100)
-    private int character_critical_probability;
+    @Column(name = "CHARACTER_CRITICAL_PROBABILITY")
+    private int critical_probability;
 
-    @Column(length = 100)
-    private int character_critical_damage;
+    @Column(name = "CHARACTER_CRITICAL_DAMAGE")
+    private int critical_damage;
 
     private CharacterStat(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
         this.name = name;
-        this.character_strength = strength;
-        this.character_attack_damage = damage;
-        this.character_attack_speed = speed;
-        this.character_defense_strength = defense;
-        this.character_critical_probability = critical;
-        this.character_critical_damage = critical_damage;
+        this.strength = strength;
+        this.attack_damage = damage;
+        this.attack_speed = speed;
+        this.defense_strength = defense;
+        this.critical_probability = critical;
+        this.critical_damage = critical_damage;
     }
 
 }
