@@ -1,7 +1,7 @@
 package earth.defense.corps.edc.domain.member.model;
 
 
-import earth.defense.corps.edc.domain.character.model.CharacterStat;
+import earth.defense.corps.edc.domain.character.model.Character;
 import earth.defense.corps.edc.domain.stage.model.Stage;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -36,22 +36,22 @@ public class Member {
 
     @ManyToOne
     @JoinColumn(name = "CHARACTER_ID", insertable = false, updatable = false)
-    private CharacterStat characterStat;
+    private Character character;
 
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private final List<Stage> stage_clear_list = new ArrayList<Stage>();
 
-    private Member(String name, String email, int gold, int jem, CharacterStat characterStat) {
+    private Member(String name, String email, int gold, int jem, Character character) {
         this.name = name;
         this.email = email;
         this.possessing_gold = gold;
         this.possessing_jem=jem;
-        this.characterStat = characterStat;
+        this.character = character;
     }
 
-    public static Member of(String name, String email, int gold, int jem, CharacterStat characterStat) {
-        return new Member(name, email, gold, jem, characterStat);
+    public static Member of(String name, String email, int gold, int jem, Character character) {
+        return new Member(name, email, gold, jem, character);
     }
 
     public void modifyMemberInfo(String name) {

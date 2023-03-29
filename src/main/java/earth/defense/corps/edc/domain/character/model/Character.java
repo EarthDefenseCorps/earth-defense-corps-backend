@@ -14,7 +14,7 @@ import static jakarta.persistence.FetchType.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CharacterStat {
+public class Character {
 
     @Id
     @GeneratedValue
@@ -48,7 +48,7 @@ public class CharacterStat {
     @Column(name = "CHARACTER_CRITICAL_DAMAGE")
     private int critical_damage;
 
-    private CharacterStat(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
+    private Character(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
         this.name = name;
         this.strength = strength;
         this.attack_damage = damage;
