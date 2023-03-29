@@ -2,13 +2,13 @@ package earth.defense.corps.edc.domain.stage.model;
 
 public enum StagePhase {
 
-    PHASE_ONE(1),
-    PHASE_TWO(2),
-    PHASE_THREE(3);
+    PHASE_ONE("1"),
+    PHASE_TWO("2"),
+    PHASE_THREE("3");
 
-    final int phase;
+    final String phase;
 
-    StagePhase(int phase){
+    StagePhase(String phase){
         this.phase = phase;
     }
 }
