@@ -1,4 +1,4 @@
 package earth.defense.corps.edc.domain.item.model;
 
-public class Shield {
+public class Shield extends BaseItem{
 }
