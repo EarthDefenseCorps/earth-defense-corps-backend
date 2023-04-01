@@ -41,6 +41,7 @@ out/
 
 ### applicationsyml ###
 src/main/resources/application.yml
+src/main/resources
 
 ### MAC OS ###
 *.DS_Store
