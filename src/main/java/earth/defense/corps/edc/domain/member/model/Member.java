@@ -57,5 +57,8 @@ public class Member {
     public void modifyMemberInfo(String name) {
         this.name = name;
     }
+//    public void setImageUrl(String imageUrl) {
+//        this.imageUrl = imageUrl;
+//    }
 
 }
