@@ -23,6 +23,7 @@ public enum ErrorCode {
     EMAIL_SENDING_FAIL(400, "M002", "이메일을 전송하는데 실패하였습니다."),
     EMAIL_CONFIRMED(400, "M003", "이미 인증된 이메일입니다."),
     EMAIL_NOT_VALID(400,"M004" ,"유효하지 않은 이메일입니다. 다시 입력해주세요."),
+    EMAIL_EMPTY(400, "M010", "이메일을 입력해주세요."),
     INVALID_LOGIN_INFO(400, "M012", "존재하지 않는 유저입니다."),
     TOKEN_EXPIRED(401, "M005", "토큰이 만료되었습니다."),
     INVALID_TOKEN(400, "M006","잘못된 토큰입니다."),
