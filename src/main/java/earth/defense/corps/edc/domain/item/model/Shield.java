@@ -1,4 +1,5 @@
 package earth.defense.corps.edc.domain.item.model;
 
 public class Shield extends BaseItem{
+    private int defenseStrength;
 }
