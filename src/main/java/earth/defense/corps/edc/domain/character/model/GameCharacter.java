@@ -14,18 +14,14 @@ import static jakarta.persistence.FetchType.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Character {
+public class GameCharacter {
 
     @Id
     @GeneratedValue
-    @Column(nullable = false, unique = true)
+    @Column(name = "character_id", nullable = false, unique = true)
     private Long id;
     @Column(nullable = false, unique = true)
     private String name;
-
-    @OneToMany(fetch = LAZY)
-    @JoinColumn(nullable = false, unique = true)
-    private List<Member> members = new ArrayList<Member>();
 
 //    @OneToOne(fetch = LAZY)
 //    @JoinColumn(name = "")
@@ -48,11 +44,11 @@ public class Character {
     @Column(nullable = false, unique = true)
     private int critical_damage;
 
-    public static Character of(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
-        return new Character(name, strength, damage, speed, defense, critical, critical_damage);
+    public static GameCharacter of(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
+        return new GameCharacter(name, strength, damage, speed, defense, critical, critical_damage);
     }
 
-    private Character(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
+    private GameCharacter(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
         this.name = name;
         this.strength = strength;
         this.attack_damage = damage;

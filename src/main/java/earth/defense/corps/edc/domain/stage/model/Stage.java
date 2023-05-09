@@ -17,7 +17,7 @@ public class Stage {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="MEMBER_ID")
+    @JoinColumn(name="id")
     private Member member;
 
     @Column(name="STAGE_NAME")
