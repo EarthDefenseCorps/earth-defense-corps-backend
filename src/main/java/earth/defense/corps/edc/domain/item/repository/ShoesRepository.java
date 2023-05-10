@@ -1,4 +1,4 @@
-package earth.defense.corps.edc.domain.item.dao;
+package earth.defense.corps.edc.domain.item.repository;
 
 import earth.defense.corps.edc.domain.item.model.Shoes;
 import org.springframework.data.jpa.repository.JpaRepository;
