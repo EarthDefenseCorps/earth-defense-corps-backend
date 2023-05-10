@@ -21,7 +21,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="dtype")
 @Getter @Setter
-public abstract class BaseItem {
+public class BaseItem {
     @Id @GeneratedValue
     @Column(name="item_id")
     private Long id;

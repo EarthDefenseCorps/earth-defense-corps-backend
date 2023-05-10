@@ -1,9 +1,7 @@
 package earth.defense.corps.edc.domain.item.service;
-
-import earth.defense.corps.edc.domain.item.repository.ClothesRepository;
-import earth.defense.corps.edc.domain.item.repository.GlovesRepository;
-import earth.defense.corps.edc.domain.item.repository.HelmetRepository;
-import earth.defense.corps.edc.domain.item.repository.ShieldRepository;
+import earth.defense.corps.edc.domain.item.model.BaseItem;
+import earth.defense.corps.edc.domain.item.model.Clothes;
+import earth.defense.corps.edc.domain.item.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ItemService {
-    private final ClothesRepository clothesRepository;
-    private final GlovesRepository glovesRepository;
-    private final HelmetRepository helmetRepository;
-    private final ShieldRepository shieldRepository;
+    private final ItemRepository itemRepository;
+    public void save(BaseItem baseItem){
+        itemRepository.save(baseItem);
+    }
+    @Transactional
+    public void saveClothes(Long itemId ){
+        Clothes clothes = new Clothes();
+        clothes.setName(""); // field from P
+        clothes.setStrength(1); // filed form ch
+    }
 
 }

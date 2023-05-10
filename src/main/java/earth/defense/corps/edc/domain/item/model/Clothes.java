@@ -2,8 +2,10 @@ package earth.defense.corps.edc.domain.item.model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-
+@Getter @Setter
 @DiscriminatorValue("Clothes")
 @Entity
 public class Clothes extends BaseItem{
