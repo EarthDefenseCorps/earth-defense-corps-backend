@@ -14,41 +14,41 @@ import static jakarta.persistence.FetchType.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Character {
+public class GameCharacter {
 
     @Id
     @GeneratedValue
-    @Column(name = "CHARACTER_ID")
+    @Column(name = "character_id", nullable = false, unique = true)
     private Long id;
-    @Column(name = "CHARACTER_NAME")
+    @Column(nullable = false, unique = true)
     private String name;
-
-    @OneToMany(fetch = LAZY)
-    @JoinColumn(name = "CHARACTER_ID")
-    private List<Member> members = new ArrayList<Member>();
 
 //    @OneToOne(fetch = LAZY)
 //    @JoinColumn(name = "")
 
-    @Column(name = "CHARACTER_STRENGTH")
+    @Column(nullable = false, unique = true)
     private int strength;
 
-    @Column(name = "CHARACTER_ATTACK_DAMAGE")
+    @Column(nullable = false, unique = true)
     private int attack_damage;
 
-    @Column(name = "CHARACTER_ATTACK_SPEED")
+    @Column(nullable = false, unique = true)
     private int attack_speed;
 
-    @Column(name = "CHARACTER_DEFENSE_STRENGTH")
+    @Column(nullable = false, unique = true)
     private int defense_strength;
 
-    @Column(name = "CHARACTER_CRITICAL_PROBABILITY")
+    @Column(nullable = false, unique = true)
     private int critical_probability;
 
-    @Column(name = "CHARACTER_CRITICAL_DAMAGE")
+    @Column(nullable = false, unique = true)
     private int critical_damage;
 
-    private Character(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
+    public static GameCharacter of(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
+        return new GameCharacter(name, strength, damage, speed, defense, critical, critical_damage);
+    }
+
+    private GameCharacter(String name, int strength, int damage, int speed, int defense, int critical, int critical_damage) {
         this.name = name;
         this.strength = strength;
         this.attack_damage = damage;
