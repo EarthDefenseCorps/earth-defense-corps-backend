@@ -51,8 +51,8 @@ public class MemberService {
         throw new LoginInfoNotFoundException();
     }
 
-    public ProfileMemberResponse getInfo(String id) {
-        Member member = memberRepository.findById(id).orElseThrow(MemberNotFoundException::new);
+    public ProfileMemberResponse getInfo(LoginRequest request) {
+        Member member = memberRepository.findById(request.getId()).orElseThrow(MemberNotFoundException::new);
         return new ProfileMemberResponse(member);
     }
 

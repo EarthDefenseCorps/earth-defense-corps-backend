@@ -6,6 +6,7 @@ import earth.defense.corps.edc.domain.member.dto.request.SignUpRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
+import earth.defense.corps.edc.domain.member.exception.LoginInfoNotFoundException;
 import earth.defense.corps.edc.domain.member.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -28,14 +29,18 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid final LoginRequest loginRequest) {
-        LoginResponse response = memberService.login(loginRequest);
-        return ResponseEntity.ok().body(response);
+        try{
+            LoginResponse response = memberService.login(loginRequest);
+            return ResponseEntity.ok().body(response);
+        }catch (LoginInfoNotFoundException e){
+            LoginResponse response = new LoginResponse("info_not_found");
+            return ResponseEntity.ok().body(response);
+        }
     }
 
     @GetMapping("/info")
-    public ResponseEntity<ProfileMemberResponse> getInfo(@RequestBody String id) {
-        return ResponseEntity.ok().body(memberService.getInfo(id));
+    public ResponseEntity<ProfileMemberResponse> getInfo(@RequestBody LoginRequest request) {
+        ProfileMemberResponse response = memberService.getInfo(request);
+        return ResponseEntity.ok().body(response);
     }
-
-
 }
