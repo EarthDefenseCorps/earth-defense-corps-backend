@@ -33,4 +33,8 @@ public class Stage {
         this.stage_phase = stage_phase;
         this.member = member;
     }
+
+    public static Stage of(boolean is_clear, StagePhase stage_phase, Member member) {
+        return new Stage(is_clear, stage_phase, member);
+    }
 }

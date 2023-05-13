@@ -9,6 +9,8 @@ import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
 import earth.defense.corps.edc.domain.member.exception.LoginInfoNotFoundException;
 import earth.defense.corps.edc.domain.member.service.MemberService;
+import earth.defense.corps.edc.domain.stage.repository.StageRepository;
+import earth.defense.corps.edc.domain.stage.service.StageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -11,6 +11,7 @@ import earth.defense.corps.edc.domain.member.exception.LoginInfoNotFoundExceptio
 import earth.defense.corps.edc.domain.member.exception.MemberNotFoundException;
 import earth.defense.corps.edc.domain.member.model.Member;
 import earth.defense.corps.edc.domain.member.repository.MemberRepository;
+import earth.defense.corps.edc.domain.stage.service.StageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ import java.util.List;
 @Slf4j
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final StageService stageService;
 
     @Transactional
     public SignUpResponse signUp(SignUpRequest request) {
@@ -34,6 +36,7 @@ public class MemberService {
                 0,
                 "default"
         );
+        stageService.setDefaultStage(member);
         memberRepository.save(member);
 
         String imageUrl = request.getImageUrl(); // 추후 스프라이트 파일을 보낼 때 사용 예정
@@ -53,6 +56,10 @@ public class MemberService {
     public ProfileMemberResponse getInfo(MemberFindRequest request) {
         Member member = memberRepository.findByEmail(request.getEmail()).orElseThrow(MemberNotFoundException::new);
         return new ProfileMemberResponse(member);
+    }
+
+    public Member getMemberById(String id) {
+        return memberRepository.findById(id).orElseThrow(MemberNotFoundException::new);
     }
 
 }
