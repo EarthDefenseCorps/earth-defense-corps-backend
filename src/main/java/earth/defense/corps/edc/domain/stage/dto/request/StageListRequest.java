@@ -1,4 +1,4 @@
-package earth.defense.corps.edc.domain.member.dto.request;
+package earth.defense.corps.edc.domain.stage.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
-    private String email;
+public class StageListRequest {
+    private String id;
 }

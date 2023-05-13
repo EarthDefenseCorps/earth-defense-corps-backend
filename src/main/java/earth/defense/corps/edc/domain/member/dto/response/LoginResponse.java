@@ -4,9 +4,10 @@ import lombok.Getter;
 
 @Getter
 public class LoginResponse {
-    private final String id;
+    private final String state;
+    public static String SUCCESS="success";
 
-    public LoginResponse(String id) {
-        this.id = id;
+    public LoginResponse(String email) {
+        this.state = SUCCESS;
     }
 }

@@ -2,12 +2,15 @@ package earth.defense.corps.edc.domain.member.controller;
 
 
 import earth.defense.corps.edc.domain.member.dto.request.LoginRequest;
+import earth.defense.corps.edc.domain.member.dto.request.MemberFindRequest;
 import earth.defense.corps.edc.domain.member.dto.request.SignUpRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
 import earth.defense.corps.edc.domain.member.exception.LoginInfoNotFoundException;
 import earth.defense.corps.edc.domain.member.service.MemberService;
+import earth.defense.corps.edc.domain.stage.repository.StageRepository;
+import earth.defense.corps.edc.domain.stage.service.StageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +42,7 @@ public class MemberController {
     }
 
     @GetMapping("/info")
-    public ResponseEntity<ProfileMemberResponse> getInfo(@RequestBody LoginRequest request) {
+    public ResponseEntity<ProfileMemberResponse> getInfo(@RequestBody MemberFindRequest request) {
         ProfileMemberResponse response = memberService.getInfo(request);
         return ResponseEntity.ok().body(response);
     }
