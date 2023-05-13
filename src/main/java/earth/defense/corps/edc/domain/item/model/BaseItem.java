@@ -3,6 +3,7 @@ package earth.defense.corps.edc.domain.item.model;
 import static jakarta.persistence.FetchType.LAZY;
 
 import earth.defense.corps.edc.domain.inventory.model.Inventory;
+import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
@@ -34,4 +35,10 @@ public class BaseItem {
     @ManyToOne(fetch = LAZY,cascade= CascadeType.PERSIST)
     @JoinColumn(name="inventory_id")
     private Inventory inventory;
+    protected BaseItem(){
+
+    }
+    public BaseItem(String type, ItemRegisterRequest request){
+
+    }
 }
