@@ -10,6 +10,6 @@ import org.hibernate.annotations.ColumnDefault;
 @DiscriminatorValue("Shield")
 @Entity
 public class Shield extends BaseItem{
-    @ColumnDefault("'0")
+    @ColumnDefault("'0'")
     private int defenseStrength;
 }

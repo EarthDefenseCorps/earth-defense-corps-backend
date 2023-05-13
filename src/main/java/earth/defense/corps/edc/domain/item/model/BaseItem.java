@@ -27,7 +27,7 @@ public class BaseItem {
     @Column(name="item_id")
     private Long id;
     private String name;
-    @ColumnDefault("'0")
+    @ColumnDefault("'0'")
     private int price;
     ItemGrade itemGrade;
     String fileUrl;
