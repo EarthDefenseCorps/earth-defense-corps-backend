@@ -1,5 +1,6 @@
 package earth.defense.corps.edc.domain.item.service;
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
+import earth.defense.corps.edc.domain.item.dto.response.ItemRegisterResponse;
 import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.domain.item.model.Clothes;
 import earth.defense.corps.edc.domain.item.repository.ItemRepository;
@@ -18,15 +19,17 @@ public class ItemService {
         itemRepository.save(baseItem);
     }
     @Transactional
-    public void saveClothes(){
-        Clothes clothes = new Clothes();
-        clothes.setName("ex"); // field from P
-        clothes.setStrength(1); // filed form ch
-        save(clothes);
-    }
-    @Transactional
-    public void saveItem(String type, ItemRegisterRequest request){
+    public ItemRegisterResponse saveItem(String type, ItemRegisterRequest request){
         BaseItem baseItem = new BaseItem(type,request);
         save(baseItem);
-    };
+        ItemRegisterResponse itemRegisterResponse = new ItemRegisterResponse();
+        return itemRegisterResponse;
+    }
+    //// how to make Clothes clss instance ex
+    //    public void saveClothes(){
+//        Clothes clothes = new Clothes();
+//        clothes.setName("ex"); // field from P
+//        clothes.setStrength(1); // filed form ch
+//
+//    }
 }
