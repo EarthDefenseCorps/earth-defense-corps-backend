@@ -36,7 +36,7 @@ public class Member {
     private String character_name;
 
 
-    @OneToMany(mappedBy = "name", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private final List<Stage> stage_clear_list = new ArrayList<Stage>();
 
     private Member(String name, String email, int gold, int jem, String character_name) {

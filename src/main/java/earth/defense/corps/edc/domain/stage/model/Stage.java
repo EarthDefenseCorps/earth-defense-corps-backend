@@ -20,9 +20,6 @@ public class Stage {
     @JoinColumn(name="id")
     private Member member;
 
-    @Column(name="STAGE_NAME")
-    private String name;
-
     @Column(name = "IS_STAGE_CLEAR")
     private boolean is_clear;
 
@@ -31,8 +28,7 @@ public class Stage {
     private StagePhase stage_phase;
 
 
-    private Stage(String name, boolean is_clear, StagePhase stage_phase, Member member) {
-        this.name = name;
+    private Stage(boolean is_clear, StagePhase stage_phase, Member member) {
         this.is_clear = is_clear;
         this.stage_phase = stage_phase;
         this.member = member;
