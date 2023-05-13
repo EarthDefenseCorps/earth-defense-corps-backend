@@ -1,4 +1,5 @@
 package earth.defense.corps.edc.domain.item.service;
+import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
 import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.domain.item.model.Clothes;
 import earth.defense.corps.edc.domain.item.repository.ItemRepository;
@@ -11,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ItemService {
     private final ItemRepository itemRepository;
+
+    @Transactional
     public void save(BaseItem baseItem){
         itemRepository.save(baseItem);
     }
@@ -21,5 +24,9 @@ public class ItemService {
         clothes.setStrength(1); // filed form ch
         save(clothes);
     }
-
+    @Transactional
+    public void saveItem(String type, ItemRegisterRequest request){
+        BaseItem baseItem = new BaseItem(type,request);
+        save(baseItem);
+    };
 }
