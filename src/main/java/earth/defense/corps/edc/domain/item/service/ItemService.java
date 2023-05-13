@@ -15,10 +15,11 @@ public class ItemService {
         itemRepository.save(baseItem);
     }
     @Transactional
-    public void saveClothes(Long itemId ){
+    public void saveClothes(){
         Clothes clothes = new Clothes();
-        clothes.setName(""); // field from P
+        clothes.setName("ex"); // field from P
         clothes.setStrength(1); // filed form ch
+        save(clothes);
     }
 
 }
