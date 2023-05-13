@@ -2,6 +2,7 @@ package earth.defense.corps.edc.domain.member.controller;
 
 
 import earth.defense.corps.edc.domain.member.dto.request.LoginRequest;
+import earth.defense.corps.edc.domain.member.dto.request.MemberFindRequest;
 import earth.defense.corps.edc.domain.member.dto.request.SignUpRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
@@ -39,7 +40,7 @@ public class MemberController {
     }
 
     @GetMapping("/info")
-    public ResponseEntity<ProfileMemberResponse> getInfo(@RequestBody LoginRequest request) {
+    public ResponseEntity<ProfileMemberResponse> getInfo(@RequestBody MemberFindRequest request) {
         ProfileMemberResponse response = memberService.getInfo(request);
         return ResponseEntity.ok().body(response);
     }

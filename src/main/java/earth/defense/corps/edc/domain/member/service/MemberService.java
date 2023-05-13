@@ -1,9 +1,8 @@
 package earth.defense.corps.edc.domain.member.service;
 
 
-import earth.defense.corps.edc.domain.character.model.GameCharacter;
-import earth.defense.corps.edc.domain.character.repository.CharacterRepository;
 import earth.defense.corps.edc.domain.member.dto.request.LoginRequest;
+import earth.defense.corps.edc.domain.member.dto.request.MemberFindRequest;
 import earth.defense.corps.edc.domain.member.dto.request.SignUpRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
@@ -43,16 +42,16 @@ public class MemberService {
 
 
     public LoginResponse login(LoginRequest loginRequest) {
-        String id = loginRequest.getId();
+        String email = loginRequest.getEmail();
         // need to add sequrity logic
-        if(memberRepository.findById(id).isPresent()){
-            return new LoginResponse(id);
+        if(memberRepository.findByEmail(email).isPresent()){
+            return new LoginResponse(email);
         }
         throw new LoginInfoNotFoundException();
     }
 
-    public ProfileMemberResponse getInfo(LoginRequest request) {
-        Member member = memberRepository.findById(request.getId()).orElseThrow(MemberNotFoundException::new);
+    public ProfileMemberResponse getInfo(MemberFindRequest request) {
+        Member member = memberRepository.findByEmail(request.getEmail()).orElseThrow(MemberNotFoundException::new);
         return new ProfileMemberResponse(member);
     }
 
