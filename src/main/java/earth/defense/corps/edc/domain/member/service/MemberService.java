@@ -2,23 +2,18 @@ package earth.defense.corps.edc.domain.member.service;
 
 
 import earth.defense.corps.edc.domain.member.dto.request.LoginRequest;
-import earth.defense.corps.edc.domain.member.dto.request.MemberFindRequest;
 import earth.defense.corps.edc.domain.member.dto.request.SignUpRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
-import earth.defense.corps.edc.domain.member.exception.LoginInfoNotFoundException;
 import earth.defense.corps.edc.domain.member.exception.MemberNotFoundException;
 import earth.defense.corps.edc.domain.member.model.Member;
 import earth.defense.corps.edc.domain.member.repository.MemberRepository;
 import earth.defense.corps.edc.domain.stage.service.StageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -55,8 +50,8 @@ public class MemberService {
         // need to add sequrity logic
     }
 
-    public ProfileMemberResponse getInfo(MemberFindRequest request) {
-        Member member = memberRepository.findByEmail(request.getEmail()).orElseThrow(MemberNotFoundException::new);
+    public ProfileMemberResponse getInfo(String request) {
+        Member member = memberRepository.findByEmail(request).orElseThrow(MemberNotFoundException::new);
         return new ProfileMemberResponse(member);
     }
 
