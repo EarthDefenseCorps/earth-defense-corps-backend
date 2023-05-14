@@ -2,8 +2,8 @@ package earth.defense.corps.edc.domain.item.model;
 
 import static jakarta.persistence.FetchType.LAZY;
 
-import earth.defense.corps.edc.domain.inventory.model.Inventory;
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
+import earth.defense.corps.edc.domain.member.model.Member;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
@@ -12,7 +12,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,9 +31,9 @@ public class BaseItem {
     private int price;
     ItemGrade itemGrade;
     String fileUrl;
-    @ManyToOne(fetch = LAZY,cascade= CascadeType.PERSIST)
-    @JoinColumn(name="inventory_id")
-    private Inventory inventory;
+
+    @ManyToOne(fetch = LAZY,cascade= CascadeType.ALL)
+    private Member member;
     protected BaseItem(){
 
     }
