@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface CharacterRepository extends JpaRepository<GameCharacter, Long> {
+public interface GameCharacterRepository extends JpaRepository<GameCharacter, Long> {
 
-    GameCharacter findByName(String name);
+    Optional<GameCharacter> findByName(String name);
 }
