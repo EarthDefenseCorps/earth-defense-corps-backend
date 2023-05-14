@@ -1,5 +1,6 @@
 package earth.defense.corps.edc.domain.member.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import earth.defense.corps.edc.domain.stage.model.Stage;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -16,7 +17,7 @@ public class Member {
 
     @Id
     @GeneratedValue
-    @Column(nullable = false, unique = true)
+    @Column(name = "member_id", nullable = false, unique = true)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -35,7 +36,7 @@ public class Member {
     @Column(nullable = false)
     private String character_name;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
     private final List<Stage> stage_clear_list = new ArrayList<Stage>();
 

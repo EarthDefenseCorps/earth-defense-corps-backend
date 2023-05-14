@@ -4,10 +4,12 @@ import lombok.Getter;
 
 @Getter
 public class LoginResponse {
-    private final String state;
+    private final boolean state;
+    private final String email;
     public static String SUCCESS="success";
 
-    public LoginResponse(String email) {
-        this.state = SUCCESS;
+    public LoginResponse(String email, boolean is_authenticated) {
+        this.state = is_authenticated;
+        this.email = email;
     }
 }

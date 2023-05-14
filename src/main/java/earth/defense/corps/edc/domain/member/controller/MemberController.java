@@ -32,13 +32,8 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid final LoginRequest loginRequest) {
-        try{
-            LoginResponse response = memberService.login(loginRequest);
-            return ResponseEntity.ok().body(response);
-        }catch (LoginInfoNotFoundException e){
-            LoginResponse response = new LoginResponse("info_not_found");
-            return ResponseEntity.ok().body(response);
-        }
+        LoginResponse response = memberService.login(loginRequest);
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/info")
