@@ -14,6 +14,7 @@ import earth.defense.corps.edc.domain.member.repository.MemberRepository;
 import earth.defense.corps.edc.domain.stage.service.StageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,11 +47,12 @@ public class MemberService {
 
     public LoginResponse login(LoginRequest loginRequest) {
         String email = loginRequest.getEmail();
-        // need to add sequrity logic
-        if(memberRepository.findByEmail(email).isPresent()){
-            return new LoginResponse(email);
+        if (memberRepository.findByEmail(email).isPresent()) {
+            return new LoginResponse(email, true);
+        } else {
+            return new LoginResponse(email, false);
         }
-        throw new LoginInfoNotFoundException();
+        // need to add sequrity logic
     }
 
     public ProfileMemberResponse getInfo(MemberFindRequest request) {
