@@ -41,7 +41,7 @@ public class StageService {
 
     @Transactional
     public StageResponse setStageClear(Member member, StagePhase phase) {
-        Stage stage = stageRepository.findByPhaseAndId(phase, member.getId());
+        Stage stage = stageRepository.findByPhaseAndMember(phase, member);
         stage.modifyStageClear(true, phase, member);
         return new StageResponse(member);
     }

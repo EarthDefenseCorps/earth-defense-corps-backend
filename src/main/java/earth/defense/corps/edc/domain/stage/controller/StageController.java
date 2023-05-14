@@ -24,14 +24,14 @@ public class StageController {
 
     @GetMapping("/list")
     public ResponseEntity<List<Stage>> getInfo(@RequestBody StageListRequest request) {
-        Member member = memberRepository.findById(request.getId()).orElseThrow(MemberNotFoundException::new);
+        Member member = memberRepository.findByEmail(request.getEmail()).orElseThrow(MemberNotFoundException::new);
         List<Stage> response = stageService.getStageList(member);
         return ResponseEntity.ok().body(response);
     }
 
     @PutMapping("/clear")
     public ResponseEntity<StageResponse> setClear(@RequestBody StageClearRequest request) {
-        Member member = memberRepository.findById(request.getId()).orElseThrow(MemberNotFoundException::new);
+        Member member = memberRepository.findByEmail(request.getEmail()).orElseThrow(MemberNotFoundException::new);
         StageResponse response = stageService.setStageClear(member, StagePhase.valueOf(request.getPhase()));
         return ResponseEntity.ok().body(response);
     }
