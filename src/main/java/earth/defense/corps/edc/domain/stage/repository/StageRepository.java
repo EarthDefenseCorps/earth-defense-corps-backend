@@ -12,5 +12,5 @@ import java.util.List;
 public interface StageRepository extends JpaRepository<Stage, Long> {
 
     List<Stage> findAllByMember(Member member);
-    Stage findByPhaseAndId(StagePhase phase, Long id);
+    Stage findByPhaseAndMember(StagePhase phase, Member member);
 }
