@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 
 @Entity
@@ -17,24 +18,30 @@ public class Stage {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id")
+    @JoinColumn(name="member_id")
     private Member member;
-
-    @Column(name="STAGE_NAME")
-    private String name;
 
     @Column(name = "IS_STAGE_CLEAR")
     private boolean is_clear;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="STAGE_PHRASE")
-    private StagePhase stage_phase;
+    @Column(name="PHASE")
+    private StagePhase phase;
 
 
-    private Stage(String name, boolean is_clear, StagePhase stage_phase, Member member) {
-        this.name = name;
+    private Stage(boolean is_clear, StagePhase stage_phase, Member member) {
         this.is_clear = is_clear;
-        this.stage_phase = stage_phase;
+        this.phase = stage_phase;
+        this.member = member;
+    }
+
+    public static Stage of(boolean is_clear, StagePhase stage_phase, Member member) {
+        return new Stage(is_clear, stage_phase, member);
+    }
+
+    public void modifyStageClear(boolean is_clear, StagePhase stage_phase, Member member) {
+        this.is_clear = is_clear;
+        this.phase = stage_phase;
         this.member = member;
     }
 }

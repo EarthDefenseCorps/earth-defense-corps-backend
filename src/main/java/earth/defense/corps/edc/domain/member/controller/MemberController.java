@@ -9,6 +9,8 @@ import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
 import earth.defense.corps.edc.domain.member.exception.LoginInfoNotFoundException;
 import earth.defense.corps.edc.domain.member.service.MemberService;
+import earth.defense.corps.edc.domain.stage.repository.StageRepository;
+import earth.defense.corps.edc.domain.stage.service.StageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,13 +32,8 @@ public class MemberController {
 
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody @Valid final LoginRequest loginRequest) {
-        try{
-            LoginResponse response = memberService.login(loginRequest);
-            return ResponseEntity.ok().body(response);
-        }catch (LoginInfoNotFoundException e){
-            LoginResponse response = new LoginResponse("info_not_found");
-            return ResponseEntity.ok().body(response);
-        }
+        LoginResponse response = memberService.login(loginRequest);
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/info")
