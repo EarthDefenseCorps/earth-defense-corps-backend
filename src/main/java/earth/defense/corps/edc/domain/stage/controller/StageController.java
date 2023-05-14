@@ -23,8 +23,8 @@ public class StageController {
     private final MemberRepository memberRepository;
 
     @GetMapping("/list")
-    public ResponseEntity<List<Stage>> getInfo(@RequestBody StageListRequest request) {
-        Member member = memberRepository.findByEmail(request.getEmail()).orElseThrow(MemberNotFoundException::new);
+    public ResponseEntity<List<Stage>> getInfo(@RequestParam("identifier") String request) {
+        Member member = memberRepository.findByEmail(request).orElseThrow(MemberNotFoundException::new);
         List<Stage> response = stageService.getStageList(member);
         return ResponseEntity.ok().body(response);
     }
