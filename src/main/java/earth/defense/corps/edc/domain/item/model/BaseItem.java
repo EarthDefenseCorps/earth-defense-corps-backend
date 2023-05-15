@@ -26,10 +26,18 @@ public class BaseItem {
     @GeneratedValue
     @Column(name="item_id")
     private Long id;
+
+
     private String name;
+
+
     @ColumnDefault("'0'")
     private int price;
+
+
     ItemGrade itemGrade;
+
+
     String fileUrl;
 
     @ManyToOne(fetch = LAZY,cascade= CascadeType.ALL)

@@ -11,8 +11,11 @@ import org.hibernate.annotations.ColumnDefault;
 @DiscriminatorValue("Helmet")
 @Entity
 public class Helmet extends BaseItem{
+
     @ColumnDefault("'0'")
     private int defenseStrength;
+
+
     @ColumnDefault("'0'")
     private int strength;
 }
