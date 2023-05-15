@@ -2,12 +2,10 @@ package earth.defense.corps.edc.domain.member.service;
 
 
 import earth.defense.corps.edc.domain.member.dto.request.LoginRequest;
-import earth.defense.corps.edc.domain.member.dto.request.MemberFindRequest;
 import earth.defense.corps.edc.domain.member.dto.request.SignUpRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
-import earth.defense.corps.edc.domain.member.exception.LoginInfoNotFoundException;
 import earth.defense.corps.edc.domain.member.exception.MemberNotFoundException;
 import earth.defense.corps.edc.domain.member.model.Member;
 import earth.defense.corps.edc.domain.member.repository.MemberRepository;
@@ -16,8 +14,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -46,15 +42,16 @@ public class MemberService {
 
     public LoginResponse login(LoginRequest loginRequest) {
         String email = loginRequest.getEmail();
-        // need to add sequrity logic
-        if(memberRepository.findByEmail(email).isPresent()){
-            return new LoginResponse(email);
+        if (memberRepository.findByEmail(email).isPresent()) {
+            return new LoginResponse(email, true);
+        } else {
+            return new LoginResponse(email, false);
         }
-        throw new LoginInfoNotFoundException();
+        // need to add sequrity logic
     }
 
-    public ProfileMemberResponse getInfo(MemberFindRequest request) {
-        Member member = memberRepository.findByEmail(request.getEmail()).orElseThrow(MemberNotFoundException::new);
+    public ProfileMemberResponse getInfo(String request) {
+        Member member = memberRepository.findByEmail(request).orElseThrow(MemberNotFoundException::new);
         return new ProfileMemberResponse(member);
     }
 

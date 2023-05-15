@@ -24,10 +24,10 @@ public class StageService {
 
     @Transactional
     public List<Stage> getStageList(Member member) {
-        return stageRepository.findAllByMemberId(member.getId());
+        return stageRepository.findAllByMember(member);
     }
 
-    // controller 단에서 사용하지 않음
+    // stage controller 단에서 사용하지 않음
     @Transactional
     public StageDefaultResponse setDefaultStage(Member member) {
         List<Stage> defaultStages = new ArrayList<>();
@@ -41,8 +41,8 @@ public class StageService {
 
     @Transactional
     public StageResponse setStageClear(Member member, StagePhase phase) {
-        Stage clearedStage = Stage.of(true, phase, member);
-        stageRepository.save(clearedStage);
+        Stage stage = stageRepository.findByPhaseAndMember(phase, member);
+        stage.modifyStageClear(true, phase, member);
         return new StageResponse(member);
     }
 
