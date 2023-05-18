@@ -19,8 +19,7 @@ public class ItemService {
     }
     @Transactional
     public ItemRegisterResponse saveItem(String type, ItemRegisterRequest request){
-        BaseItem baseItem = new BaseItem(type,request);
-        save(baseItem);
+        save(BaseItem.of(type, request));
         ItemRegisterResponse itemRegisterResponse = new ItemRegisterResponse();
         return itemRegisterResponse;
     }
