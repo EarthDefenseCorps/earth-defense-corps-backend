@@ -4,5 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum ItemGrade {
-    NORMAL
+    NORMAL,
+    RARE,
+    EPIC,
+    UNIQUE,
+    LEGEND
 }

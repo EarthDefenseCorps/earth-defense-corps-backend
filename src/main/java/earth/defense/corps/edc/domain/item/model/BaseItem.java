@@ -37,15 +37,24 @@ public class BaseItem {
 
     ItemGrade itemGrade;
 
+    ItemType type;
+
 
     String fileUrl;
 
     @ManyToOne(fetch = LAZY,cascade= CascadeType.ALL)
     private Member member;
-    protected BaseItem(){
 
+    public BaseItem(){}
+
+    public static BaseItem of(String grade, ItemRegisterRequest request) {
+        return new BaseItem(grade, request);
     }
-    public BaseItem(String type, ItemRegisterRequest request){
 
+    protected BaseItem(String type, ItemRegisterRequest request){
+        this.name = request.getName();
+        this.price = request.getPrice();
+        this.type = ItemType.valueOf(type);
+        this.itemGrade = ItemGrade.valueOf(request.getItemGrade());
     }
 }
