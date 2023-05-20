@@ -29,12 +29,15 @@ public class Stage {
     private StagePhase phase;
 
 
+    private int stage;
+
+
     private Stage(boolean is_clear, StagePhase stage_phase, Member member) {
         this.is_clear = is_clear;
         this.phase = stage_phase;
         this.member = member;
+        this.stage = stage_phase.getEnumPhase();
     }
-
     public static Stage of(boolean is_clear, StagePhase stage_phase, Member member) {
         return new Stage(is_clear, stage_phase, member);
     }

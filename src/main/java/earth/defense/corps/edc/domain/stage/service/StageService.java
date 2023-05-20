@@ -6,6 +6,7 @@ import earth.defense.corps.edc.domain.stage.dto.response.StageResponse;
 import earth.defense.corps.edc.domain.stage.model.Stage;
 import earth.defense.corps.edc.domain.stage.model.StagePhase;
 import earth.defense.corps.edc.domain.stage.repository.StageRepository;
+import earth.defense.corps.edc.global.ResponseHeader;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -36,14 +37,15 @@ public class StageService {
             defaultStages.add(defaultStage);
         }
         stageRepository.saveAll(defaultStages);
-        return new StageDefaultResponse();
+        return new StageDefaultResponse(new ResponseHeader(200, "스테이지 객체 생성 완료"));
     }
 
     @Transactional
-    public StageResponse setStageClear(Member member, StagePhase phase) {
-        Stage stage = stageRepository.findByPhaseAndMember(phase, member);
-        stage.modifyStageClear(true, phase, member);
-        return new StageResponse(member);
+    public StageResponse setStageClear(Member member, StagePhase stage) {
+        Stage phase = stageRepository.findByPhaseAndMember(stage, member);
+        phase.modifyStageClear(true, stage, member);
+        String stageClearMessage = String.format("스테이지 %d 클리어 완료",stage.getEnumPhase());
+        return new StageResponse(new ResponseHeader(200, stageClearMessage), member);
     }
 
 }
