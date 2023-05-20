@@ -2,6 +2,7 @@ package earth.defense.corps.edc.domain.member.dto.response;
 
 
 import earth.defense.corps.edc.domain.member.model.Member;
+import earth.defense.corps.edc.global.ResponseHeader;
 import lombok.Getter;
 
 @Getter
@@ -13,8 +14,11 @@ public class ProfileMemberResponse {
     private final int possesing_gold;
     private final int possesing_gem;
 
+    private final ResponseHeader header;
 
-    public ProfileMemberResponse(Member member){
+
+    public ProfileMemberResponse(ResponseHeader responseHeader, Member member){
+        this.header = responseHeader;
         this.id = member.getId();
         this.name = member.getName();
         this.email = member.getEmail();
