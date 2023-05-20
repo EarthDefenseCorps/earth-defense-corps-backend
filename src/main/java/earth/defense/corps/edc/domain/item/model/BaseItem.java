@@ -3,6 +3,7 @@ package earth.defense.corps.edc.domain.item.model;
 import static jakarta.persistence.FetchType.LAZY;
 
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
+import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
 import earth.defense.corps.edc.domain.member.model.Member;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -27,34 +28,40 @@ public class BaseItem {
     @Column(name="item_id")
     private Long id;
 
-
     private String name;
 
-
-    @ColumnDefault("'0'")
     private int price;
-
 
     ItemGrade itemGrade;
 
     ItemType type;
 
+    int itemUpgrade;
 
-    String fileUrl;
+
+//    String fileUrl;
 
     @ManyToOne(fetch = LAZY,cascade= CascadeType.ALL)
     private Member member;
 
     public BaseItem(){}
 
-    public static BaseItem of(String grade, ItemRegisterRequest request) {
-        return new BaseItem(grade, request);
+    public static BaseItem of(String grade, ItemRegisterRequest request, Member member) {
+        return new BaseItem(grade, request, member);
     }
 
-    protected BaseItem(String type, ItemRegisterRequest request){
+    protected BaseItem(String type, ItemRegisterRequest request, Member member){
         this.name = request.getName();
         this.price = request.getPrice();
         this.type = ItemType.valueOf(type);
         this.itemGrade = ItemGrade.valueOf(request.getItemGrade());
+        this.itemUpgrade = request.getItemUpgrade();
+        this.member = member;
+    }
+
+    protected void upgrade(ItemUpgradeRequest request, Member member){
+        this.price = request.getPrice();
+        this.itemUpgrade = request.getItemUpgrade();
+        this.member = member;
     }
 }

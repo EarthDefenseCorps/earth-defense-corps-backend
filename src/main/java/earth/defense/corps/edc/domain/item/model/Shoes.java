@@ -1,6 +1,9 @@
 package earth.defense.corps.edc.domain.item.model;
 
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
+import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
+import earth.defense.corps.edc.domain.member.model.Member;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
@@ -14,14 +17,19 @@ import org.hibernate.annotations.ColumnDefault;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Shoes extends BaseItem{
-    @ColumnDefault("'0'")
+
     private int strength;
 
-    private Shoes(String type, ItemRegisterRequest request) {
-        super(type, request);
+    private Shoes(String type, ItemRegisterRequest request, Member member) {
+        super(type, request, member);
         this.strength = request.getStrength();
     }
-    public static Shoes of(String type, ItemRegisterRequest request) {
-        return new Shoes(type, request);
+    public static Shoes of(String type, ItemRegisterRequest request, Member member) {
+        return new Shoes(type, request, member);
+    }
+
+    public void upgrade(String type, ItemUpgradeRequest request, Member member) {
+        super.upgrade(request, member);
+        this.strength = request.getStrength();
     }
 }

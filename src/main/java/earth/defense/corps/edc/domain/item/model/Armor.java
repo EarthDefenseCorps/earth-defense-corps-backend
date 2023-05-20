@@ -1,6 +1,9 @@
 package earth.defense.corps.edc.domain.item.model;
 
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
+import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
+import earth.defense.corps.edc.domain.member.model.Member;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
@@ -14,18 +17,22 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 public class Armor extends BaseItem{
 
-    @ColumnDefault("'0'")
     private int strength;
 
-    @ColumnDefault("'0'")
     private int defenseStrength;
 
-    private Armor(String type, ItemRegisterRequest request) {
-        super(type, request);
+    private Armor(String type, ItemRegisterRequest request, Member member) {
+        super(type, request, member);
         this.strength = request.getStrength();
         this.defenseStrength = request.getDefenseStrength();
     }
-    public static Armor of(String type, ItemRegisterRequest request) {
-        return new Armor(type, request);
+    public static Armor of(String type, ItemRegisterRequest request, Member member) {
+        return new Armor(type, request, member);
+    }
+
+    public void upgrade(String type, ItemUpgradeRequest request, Member member) {
+        super.upgrade(request, member);
+        this.strength = request.getStrength();
+        this.defenseStrength = request.getDefenseStrength();
     }
 }
