@@ -32,7 +32,7 @@ public class StageController {
     @PutMapping("/clear")
     public ResponseEntity<StageResponse> setClear(@RequestBody StageClearRequest request) {
         Member member = memberRepository.findByEmail(request.getEmail()).orElseThrow(MemberNotFoundException::new);
-        StageResponse response = stageService.setStageClear(member, StagePhase.valueOf(request.getPhase()));
+        StageResponse response = stageService.setStageClear(member,StagePhase.getPhaseByInt(request.getStage()));
         return ResponseEntity.ok().body(response);
     }
 

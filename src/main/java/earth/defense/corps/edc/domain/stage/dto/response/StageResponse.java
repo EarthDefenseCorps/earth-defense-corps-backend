@@ -1,17 +1,17 @@
 package earth.defense.corps.edc.domain.stage.dto.response;
 
 import earth.defense.corps.edc.domain.member.model.Member;
+import earth.defense.corps.edc.global.ResponseHeader;
 import lombok.Getter;
 
 @Getter
 public class StageResponse {
 
-    private final String state;
     private final Long id;
-    public static String SUCCESS="stage cleared";
+    private ResponseHeader header;
 
-    public StageResponse(Member member) {
-        this.state = SUCCESS;
+    public StageResponse(ResponseHeader header, Member member) {
+        this.header= header;
         this.id = member.getId();
     }
 }
