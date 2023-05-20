@@ -8,20 +8,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-@Setter
-@Getter
-@DiscriminatorValue("Shoes")
+@Getter @Setter
+@DiscriminatorValue("Armor")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Shoes extends BaseItem{
+public class Armor extends BaseItem{
+
     @ColumnDefault("'0'")
     private int strength;
 
-    private Shoes(String type, ItemRegisterRequest request) {
+    @ColumnDefault("'0'")
+    private int defenseStrength;
+
+    private Armor(String type, ItemRegisterRequest request) {
         super(type, request);
         this.strength = request.getStrength();
+        this.defenseStrength = request.getDefenseStrength();
     }
-    public static Shoes of(String type, ItemRegisterRequest request) {
-        return new Shoes(type, request);
+    public static Armor of(String type, ItemRegisterRequest request) {
+        return new Armor(type, request);
     }
 }

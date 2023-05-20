@@ -5,12 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ItemRegisterRequest{
-    boolean isEquipped;
-    String name;
-    String itemGrade;
-    int price;
-    //String file_url;
+public class ItemUpgradeRequest {
+    String itemId;
     int itemUpgrade;
     int attackDamage;
     int criticalDamageProbability;
