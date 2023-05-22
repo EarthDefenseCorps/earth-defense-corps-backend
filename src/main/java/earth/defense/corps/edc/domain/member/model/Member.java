@@ -55,6 +55,14 @@ public class Member {
     public void modifyMemberInfo(String name) {
         this.name = name;
     }
+
+    public void modifyMemberGem(int gem) {
+        this.possessing_jem = gem;
+    }
+
+    public void modifyMemberGold(int gold) {
+        this.possessing_gold = gold;
+    }
 //    public void setImageUrl(String imageUrl) {
 //        this.imageUrl = imageUrl;
 //    }

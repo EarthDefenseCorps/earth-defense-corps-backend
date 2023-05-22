@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StageClearRequest {
-    private String phase;
+    private int stage;
     private String email;
 }
