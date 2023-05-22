@@ -6,23 +6,21 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
-
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Stage {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "STAGE_ID")
+    @Column(name = "stage_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member;
 
-    @Column(name = "IS_STAGE_CLEAR")
-    private boolean is_clear;
+    @Column(name = "stage_is_clear")
+    private boolean isClear;
 
     @Enumerated(EnumType.STRING)
     @Column(name="PHASE")
@@ -32,19 +30,19 @@ public class Stage {
     private int stage;
 
 
-    private Stage(boolean is_clear, StagePhase stage_phase, Member member) {
-        this.is_clear = is_clear;
-        this.phase = stage_phase;
+    private Stage(boolean isClear, StagePhase stagePhase, Member member) {
+        this.isClear = isClear;
+        this.phase = stagePhase;
         this.member = member;
-        this.stage = stage_phase.getEnumPhase();
+        this.stage = stagePhase.getEnumPhase();
     }
-    public static Stage of(boolean is_clear, StagePhase stage_phase, Member member) {
-        return new Stage(is_clear, stage_phase, member);
+    public static Stage of(boolean is_clear, StagePhase stagePhase, Member member) {
+        return new Stage(is_clear, stagePhase, member);
     }
 
-    public void modifyStageClear(boolean is_clear, StagePhase stage_phase, Member member) {
-        this.is_clear = is_clear;
-        this.phase = stage_phase;
+    public void modifyStageClear(boolean isClear, StagePhase stagePhase, Member member) {
+        this.isClear = isClear;
+        this.phase = stagePhase;
         this.member = member;
     }
 }
