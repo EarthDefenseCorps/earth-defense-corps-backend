@@ -10,8 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader.Strategy;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
 @Entity
 @Getter
@@ -67,8 +65,4 @@ public class Member {
     public void modifyMemberGold(int gold) {
         this.possessing_gold = gold;
     }
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
-
 }
