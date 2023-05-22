@@ -26,7 +26,7 @@ public class WebSecurityConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/member/**", "/login/**",
-                        "/stage/**", "/groups/**", "/**").permitAll()
+                        "/stage/**", "/groups/**", "/**", "/item/**").permitAll()
                 .anyRequest().authenticated()
                 .and().exceptionHandling();
         return http.build();

@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ItemUpgradeRequest {
-    String itemId;
+    int price;
     int itemUpgrade;
     int attackDamage;
     int criticalDamageProbability;

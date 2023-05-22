@@ -3,18 +3,16 @@ package earth.defense.corps.edc.domain.item.dto.response;
 import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.global.ResponseHeader;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
-public class ItemUpgradeResponse {
+public class ItemListResponse {
     private final ResponseHeader header;
-    private final Long itemId;
-//    private final BaseItem upgradedItem;
+    private List<BaseItem> itemList;
 
-    public ItemUpgradeResponse(Long id, ResponseHeader header) {
-//        this.upgradedItem = item;
-        this.itemId = id;
+    public ItemListResponse(List<BaseItem> itemList, ResponseHeader header) {
         this.header = header;
+        this.itemList = itemList;
     }
-
 }

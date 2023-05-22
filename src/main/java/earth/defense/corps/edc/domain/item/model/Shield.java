@@ -1,6 +1,9 @@
 package earth.defense.corps.edc.domain.item.model;
 
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
+import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
+import earth.defense.corps.edc.domain.member.model.Member;
+import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
@@ -14,14 +17,19 @@ import org.hibernate.annotations.ColumnDefault;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Shield extends BaseItem{
-    @ColumnDefault("'0'")
+
     private int defenseStrength;
 
-    private Shield(String type, ItemRegisterRequest request) {
-        super(type, request);
+    private Shield(String type, ItemRegisterRequest request, Member member) {
+        super(type, request, member);
         this.defenseStrength = request.getDefenseStrength();
     }
-    public static Shield of(String type, ItemRegisterRequest request) {
-        return new Shield(type, request);
+    public static Shield of(String type, ItemRegisterRequest request, Member member) {
+        return new Shield(type, request, member);
+    }
+
+    public void upgrade(ItemUpgradeRequest request, Member member) {
+        super.upgrade(request, member);
+        this.defenseStrength = request.getDefenseStrength();
     }
 }
