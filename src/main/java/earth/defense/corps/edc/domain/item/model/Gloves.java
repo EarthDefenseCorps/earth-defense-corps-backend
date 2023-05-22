@@ -36,7 +36,7 @@ public class Gloves extends BaseItem{
         return new Gloves(type, request, member);
     }
 
-    public void upgrade(String type, ItemUpgradeRequest request, Member member) {
+    public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
         this.attackDamage = request.getCriticalDamage();
         this.criticalDamageProbability = request.getCriticalDamageProbability();

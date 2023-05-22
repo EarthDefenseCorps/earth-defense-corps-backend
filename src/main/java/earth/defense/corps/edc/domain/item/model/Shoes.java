@@ -28,7 +28,7 @@ public class Shoes extends BaseItem{
         return new Shoes(type, request, member);
     }
 
-    public void upgrade(String type, ItemUpgradeRequest request, Member member) {
+    public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
         this.strength = request.getStrength();
     }

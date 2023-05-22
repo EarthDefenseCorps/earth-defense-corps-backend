@@ -32,7 +32,7 @@ public class Helmet extends BaseItem{
     public static Helmet of(String type, ItemRegisterRequest request, Member member) {
         return new Helmet(type, request, member);
     }
-    public void upgrade(String type, ItemUpgradeRequest request, Member member) {
+    public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
         this.strength = request.getStrength();
         this.defenseStrength = request.getDefenseStrength();
