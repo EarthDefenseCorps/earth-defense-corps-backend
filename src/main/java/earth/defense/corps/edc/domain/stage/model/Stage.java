@@ -13,7 +13,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Stage {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "STAGE_ID")
     private Long id;
 
