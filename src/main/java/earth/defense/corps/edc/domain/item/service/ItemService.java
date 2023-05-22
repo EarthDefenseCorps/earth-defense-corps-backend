@@ -39,48 +39,48 @@ public class ItemService {
     }
 
     @Transactional
-    public Long upgrade(Long ItemId, ItemUpgradeRequest request) {
+    public BaseItem upgrade(Long ItemId, ItemUpgradeRequest request) {
         BaseItem item = itemRepository.findById(ItemId).orElseThrow();
         Member member = item.getMember();
         switch (item.getType()) {
             case ARMOR -> {
                 Armor armor = (Armor) item;
                 armor.upgrade(request, member);
-                return armor.getId();
+                return armor;
 //                return armor;
             }
             case GLOVES -> {
                 Gloves gloves = (Gloves) item;
                 gloves.upgrade(request, member);
-                return gloves.getId();
+                return gloves;
 //                return gloves;
             }
             case HELMET -> {
                 Helmet helmet = (Helmet) item;
                 helmet.upgrade(request, member);
-                return helmet.getId();
+                return helmet;
 //                return helmet;
             }
             case SHIELD -> {
                 Shield shield = (Shield) item;
                 shield.upgrade(request, member);
-                return shield.getId();
+                return shield;
 //                return shield;
             }
             case SHOES -> {
                 Shoes shoes = (Shoes) item;
                 shoes.upgrade(request, member);
-                return shoes.getId();
+                return shoes;
 //                return shoes;
             }
             case WEAPON -> {
                 Weapon weapon = (Weapon) item;
                 weapon.upgrade(request, member);
-                return weapon.getId();
+                return weapon;
 //                return weapon;
             }
         }
-        return null;
+        return item;
 //        return null;
     }
 
@@ -100,8 +100,8 @@ public class ItemService {
     @Transactional
     public ItemUpgradeResponse upgradeItem(Long ItemId, ItemUpgradeRequest request){
 //        BaseItem upgradedItem = upgrade(ItemId, request);
-        Long id = upgrade(ItemId, request);
-        return new ItemUpgradeResponse(id, new ResponseHeader(200, "아이템 수정(강화) 완료"));
+        BaseItem item = upgrade(ItemId, request);
+        return new ItemUpgradeResponse(item, new ResponseHeader(200, "아이템 수정(강화) 완료"));
     }
 
     @Transactional

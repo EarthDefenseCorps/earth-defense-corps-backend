@@ -1,6 +1,7 @@
 package earth.defense.corps.edc.domain.member.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.domain.stage.model.Stage;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -9,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader.Strategy;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 
 @Entity
 @Getter
@@ -16,7 +19,7 @@ import java.util.List;
 public class Member {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id", nullable = false, unique = true)
     private Long id;
 
@@ -31,14 +34,15 @@ public class Member {
 
     @Column(nullable = false)
     private int possessing_jem;
-
-
     @Column(nullable = false)
     private String character_name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
-    private final List<Stage> stage_clear_list = new ArrayList<Stage>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private final List<Stage> stage_clear_list = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private final List<BaseItem> items = new ArrayList<>();
 
     private Member(String name, String email, int gold, int jem, String character_name) {
         this.name = name;
