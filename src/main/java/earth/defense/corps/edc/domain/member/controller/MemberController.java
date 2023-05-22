@@ -3,6 +3,8 @@ package earth.defense.corps.edc.domain.member.controller;
 
 import earth.defense.corps.edc.domain.member.dto.request.LoginRequest;
 import earth.defense.corps.edc.domain.member.dto.request.SignUpRequest;
+import earth.defense.corps.edc.domain.member.dto.request.gemRequest;
+import earth.defense.corps.edc.domain.member.dto.request.goldRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
@@ -35,5 +37,15 @@ public class MemberController {
     public ResponseEntity<ProfileMemberResponse> getInfo(@RequestParam("identifier") String request) {
         ProfileMemberResponse response = memberService.getInfo(request);
         return ResponseEntity.ok().body(response);
+    }
+
+    @PutMapping("/gem")
+    public ResponseEntity<ProfileMemberResponse> gemUpdate(@RequestParam("memberId" ) Long id, @RequestBody @Valid gemRequest request) {
+        return ResponseEntity.ok().body(memberService.updateMemberGem(id, request));
+    }
+
+    @PutMapping("/gold")
+    public ResponseEntity<ProfileMemberResponse> goldUpdate(@RequestParam("memberId" ) Long id, @RequestBody @Valid goldRequest request) {
+        return ResponseEntity.ok().body(memberService.updateMemberGold(id, request));
     }
 }
