@@ -106,6 +106,10 @@ public class ItemService {
 
     @Transactional
     public ItemDeleteResponse deleteItem(Long itemId) {
+        BaseItem item = itemRepository.findById(itemId).orElseThrow();
+        Member member  = item.getMember();
+        int currentGold = member.getPossessing_gold();
+        member.modifyMemberGold(currentGold + item.getPrice());
         itemRepository.deleteById(itemId);
         return new ItemDeleteResponse(new ResponseHeader(200, "아이템 삭제 완료"));
     }
