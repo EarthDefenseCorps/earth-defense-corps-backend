@@ -8,6 +8,7 @@ import earth.defense.corps.edc.domain.stage.model.Stage;
 import earth.defense.corps.edc.domain.stage.model.StagePhase;
 import earth.defense.corps.edc.domain.stage.repository.StageRepository;
 import earth.defense.corps.edc.global.ResponseHeader;
+import earth.defense.corps.edc.global.error.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,22 +27,26 @@ public class StageService {
     public List<Stage> getStageList(Member member) {
         return stageRepository.findAllByMember(member);
     }
+    public Stage getByPhaseAndMember(StagePhase stagePhase, Member member){
+        return stageRepository.findByPhaseAndMember(stagePhase, member).orElseThrow(()->new EntityNotFoundException("Entity not found" ));
+    }
     @Transactional
-    public StageResponse setStageClear(Member member, StagePhase stage) {
-        Stage phase = stageRepository.findByPhaseAndMember(stage, member);
-        phase.modifyStageClear(true, stage, member);
-        String stageClearMessage = String.format("스테이지 %d 클리어 완료",stage.getEnumPhase());
+    public StageResponse setStageClear(Member member, StagePhase stagePhase) {
+        Stage stage = getByPhaseAndMember(stagePhase,member);
+        stage.modifyStageClear(true, stagePhase, member);
+        String stageClearMessage = String.format("스테이지 %d 클리어 완료",stagePhase.getEnumPhase());
         return new StageResponse(new ResponseHeader(200, stageClearMessage), member);
     }
     @Transactional
     public StageResponse setStageClear(StageClearRequest request) {
 
         Member member = memberService.findByEmail(request.getEmail());
-        StagePhase stage = StagePhase.getPhaseByInt(request.getStage());
+        StagePhase stagePhase = StagePhase.getPhaseByInt(request.getStage());
 
-        Stage phase = stageRepository.findByPhaseAndMember(stage,member);
+        Stage stage = getByPhaseAndMember(stagePhase,member);
 
-        phase.modifyStageClear(true, stage, member);
-        return new StageResponse(new ResponseHeader(200, "스테이지 "+stage.getEnumPhase()+" 클리어 완료"), member);
+        stage.modifyStageClear(true, stagePhase, member);
+
+        return new StageResponse(new ResponseHeader(200, "스테이지 "+stagePhase.getEnumPhase()+" 클리어 완료"), member);
     }
 }
