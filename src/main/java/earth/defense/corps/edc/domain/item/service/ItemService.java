@@ -10,6 +10,7 @@ import earth.defense.corps.edc.domain.item.repository.*;
 import earth.defense.corps.edc.domain.member.exception.MemberNotFoundException;
 import earth.defense.corps.edc.domain.member.model.Member;
 import earth.defense.corps.edc.domain.member.repository.MemberRepository;
+import earth.defense.corps.edc.domain.member.service.MemberService;
 import earth.defense.corps.edc.global.ResponseHeader;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,14 +20,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ItemService {
-    private final MemberRepository memberRepository;
     private final ItemRepository itemRepository;
-
-
+    private final MemberService memberService;
     @Transactional
     public Long save(String type, ItemRegisterRequest request, Long memberId){
         ItemType itm = ItemType.valueOf(type);
-        Member member = memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
+        Member member = memberService.getMemberById(memberId);
         BaseItem savedItem = switch (itm) {
             case ARMOR -> itemRepository.save(Armor.of(type, request, member));
             case GLOVES -> itemRepository.save(Gloves.of(type, request, member));
@@ -54,8 +53,8 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemListResponse getItemList(Long memebrId){
-        Member member = memberRepository.findById(memebrId).orElseThrow(MemberNotFoundException::new);
+    public ItemListResponse getItemList(Long memberId){
+        Member member = memberService.getMemberById(memberId);
         return new ItemListResponse(itemRepository.findAllByMember(member), new ResponseHeader(200, "아이템 리스트 불러오기 성공"));
     }
 
