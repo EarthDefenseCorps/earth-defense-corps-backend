@@ -29,26 +29,26 @@ public class Member {
     private String name;
 
     @Column(nullable = false)
-    private int possessing_gold;
+    private int possessingGold;
 
     @Column(nullable = false)
-    private int possessing_jem;
+    private int possessingJem;
     @Column(nullable = false)
-    private String character_name;
+    private String characterName;
 
     @JsonIgnore
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Stage> stage_clear_list = new ArrayList<>();
+    private List<Stage> stageClearList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<BaseItem> items = new ArrayList<>();
 
-    private Member(String name, String email, int gold, int jem, String character_name) {
+    private Member(String name, String email, int gold, int jem, String characterName) {
         this.name = name;
         this.email = email;
-        this.possessing_gold = gold;
-        this.possessing_jem=jem;
-        this.character_name = character_name;
+        this.possessingGold = gold;
+        this.possessingJem=jem;
+        this.characterName = characterName;
     }
 
     public static Member of(String name, String email, int gold, int jem, String character_name) {
@@ -60,15 +60,15 @@ public class Member {
     }
 
     public void modifyMemberGem(int gem) {
-        this.possessing_jem = gem;
+        this.possessingJem = gem;
     }
 
     public void modifyMemberGold(int gold) {
-        this.possessing_gold = gold;
+        this.possessingGold = gold;
     }
     public void  initStageList(){
         for (StagePhase phase : StagePhase.values()) {
-            this.stage_clear_list.add(Stage.of(false, phase,this));
+            this.stageClearList.add(Stage.of(false, phase,this));
         }
     }
 }

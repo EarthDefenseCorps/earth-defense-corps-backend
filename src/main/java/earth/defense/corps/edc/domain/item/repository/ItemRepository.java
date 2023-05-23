@@ -9,5 +9,4 @@ import java.util.Optional;
 
 public interface ItemRepository extends JpaRepository<BaseItem,Long> {
     List<BaseItem> findAllByMember(Member member);
-    Optional<BaseItem> findById(Long id);
 }

@@ -56,8 +56,8 @@ public class MemberService {
         return new ProfileMemberResponse(new ResponseHeader(200, "회원 정보 가져오기 성공"), member);
     }
 
-    public Member getMemberById(String id) {
-        return memberRepository.findById(id).orElseThrow(MemberNotFoundException::new);
+    public Member getMemberById(Long memberId) {
+        return memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
     }
 
     @Transactional
