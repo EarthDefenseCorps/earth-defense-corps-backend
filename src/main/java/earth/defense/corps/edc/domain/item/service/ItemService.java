@@ -40,11 +40,12 @@ public class ItemService {
 
     @Transactional
     public BaseItem upgrade(Long ItemId, ItemUpgradeRequest request) {
-        BaseItem item = itemRepository.findById(ItemId).orElseThrow();
-        Member member = item.getMember();
-        return item.itemUpgrade(request,member);
+        BaseItem item = getById(ItemId);
+        return item.itemUpgrade(request);
     }
-
+    public BaseItem getById(Long ItemId){
+        return itemRepository.findById(ItemId).orElseThrow();
+    }
 
     @Transactional
     public ItemRegisterResponse saveItem(String type, ItemRegisterRequest request){
