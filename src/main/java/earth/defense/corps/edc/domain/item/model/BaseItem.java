@@ -1,7 +1,5 @@
 package earth.defense.corps.edc.domain.item.model;
 
-import static jakarta.persistence.FetchType.LAZY;
-
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
 import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
 import earth.defense.corps.edc.domain.member.model.Member;
@@ -9,7 +7,9 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -25,26 +25,17 @@ import org.hibernate.annotations.ColumnDefault;
 @Setter
 public class BaseItem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
-
     private String name;
-
     private int price;
-
     ItemGrade itemGrade;
-
     ItemType type;
-
     private int itemUpgrade;
-
     private boolean isEquipped;
-
-
 //    String fileUrl;
-
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private Member member;
 
     public BaseItem() {
