@@ -33,9 +33,7 @@ public class MemberService {
                 0,
                 "default"
         );
-
-        Stage stage = null;
-        stage.setStages(member);
+        member.initStageList();
 
         memberRepository.save(member);
         String imageUrl = request.getImageUrl(); // 추후 스프라이트 파일을 보낼 때 사용 예정

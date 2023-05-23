@@ -1,6 +1,5 @@
 package earth.defense.corps.edc.domain.stage.model;
 
-
 import earth.defense.corps.edc.domain.member.model.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,10 +11,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -51,10 +50,5 @@ public class Stage {
         this.isClear = isClear;
         this.phase = stagePhase;
         this.member = member;
-    }
-    public void setStages(Member member){
-        for (StagePhase phase : StagePhase.values()) {
-            Stage.of(false, phase, member);
-        }
     }
 }

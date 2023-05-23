@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class SignUpRequest {
 
     @NotBlank(message = "이름을 입력해주세요.")
@@ -15,7 +14,5 @@ public class SignUpRequest {
     @NotBlank(message = "이메일을 입력해주세요.")
     private String email;
 
-
-    @Nullable
     private String imageUrl;
 }
