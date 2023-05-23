@@ -60,4 +60,46 @@ public class BaseItem {
         this.itemUpgrade = request.getItemUpgrade();
         this.member = member;
     }
+    public BaseItem itemUpgrade(ItemUpgradeRequest request, Member member)
+    {
+        switch (this.getType()) {
+            case ARMOR -> {
+                Armor armor = (Armor) this;
+                armor.upgrade(request, member);
+                return armor;
+//                return armor;
+            }
+            case GLOVES -> {
+                Gloves gloves = (Gloves) this;
+                gloves.upgrade(request, member);
+                return gloves;
+//                return gloves;
+            }
+            case HELMET -> {
+                Helmet helmet = (Helmet) this;
+                helmet.upgrade(request, member);
+                return helmet;
+//                return helmet;
+            }
+            case SHIELD -> {
+                Shield shield = (Shield) this;
+                shield.upgrade(request, member);
+                return shield;
+//                return shield;
+            }
+            case SHOES -> {
+                Shoes shoes = (Shoes) this;
+                shoes.upgrade(request, member);
+                return shoes;
+//                return shoes;
+            }
+            case WEAPON -> {
+                Weapon weapon = (Weapon) this;
+                weapon.upgrade(request, member);
+                return weapon;
+//                return weapon;
+            }
+        }
+        return this ;
+    }
 }

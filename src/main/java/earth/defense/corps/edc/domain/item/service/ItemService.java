@@ -42,46 +42,7 @@ public class ItemService {
     public BaseItem upgrade(Long ItemId, ItemUpgradeRequest request) {
         BaseItem item = itemRepository.findById(ItemId).orElseThrow();
         Member member = item.getMember();
-        switch (item.getType()) {
-            case ARMOR -> {
-                Armor armor = (Armor) item;
-                armor.upgrade(request, member);
-                return armor;
-//                return armor;
-            }
-            case GLOVES -> {
-                Gloves gloves = (Gloves) item;
-                gloves.upgrade(request, member);
-                return gloves;
-//                return gloves;
-            }
-            case HELMET -> {
-                Helmet helmet = (Helmet) item;
-                helmet.upgrade(request, member);
-                return helmet;
-//                return helmet;
-            }
-            case SHIELD -> {
-                Shield shield = (Shield) item;
-                shield.upgrade(request, member);
-                return shield;
-//                return shield;
-            }
-            case SHOES -> {
-                Shoes shoes = (Shoes) item;
-                shoes.upgrade(request, member);
-                return shoes;
-//                return shoes;
-            }
-            case WEAPON -> {
-                Weapon weapon = (Weapon) item;
-                weapon.upgrade(request, member);
-                return weapon;
-//                return weapon;
-            }
-        }
-        return item;
-//        return null;
+        return item.itemUpgrade(request,member);
     }
 
 
