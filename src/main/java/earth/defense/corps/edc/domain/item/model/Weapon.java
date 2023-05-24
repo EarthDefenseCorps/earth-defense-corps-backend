@@ -22,10 +22,10 @@ public class Weapon extends BaseItem{
     private int attackDamage;
 
 
-    private int criticalDamageProbability;
+    private float criticalDamageProbability;
 
 
-    private int criticalDamage;
+    private float criticalDamage;
 
     private Weapon(String type, ItemRegisterRequest request, Member member) {
         super(type, request, member);

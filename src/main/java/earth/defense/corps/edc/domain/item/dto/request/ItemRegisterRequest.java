@@ -16,8 +16,9 @@ public class ItemRegisterRequest{
     //String file_url;
     private int itemUpgrade;
     private int attackDamage;
-    private int criticalDamageProbability;
-    private int criticalDamage;
-    private int strength;
-    private int defenseStrength;
+    private float criticalDamageProbability;
+    private float criticalDamage;
+    private float strength;
+    private float defenseStrength;
+    private float specialMoveGage;
 }

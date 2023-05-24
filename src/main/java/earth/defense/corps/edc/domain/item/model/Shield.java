@@ -18,11 +18,13 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 public class Shield extends BaseItem{
 
-    private int defenseStrength;
+    private float defenseStrength;
+    private float specialMoveGage;
 
     private Shield(String type, ItemRegisterRequest request, Member member) {
         super(type, request, member);
         this.defenseStrength = request.getDefenseStrength();
+        this.specialMoveGage = request.getSpecialMoveGage();
     }
     public static Shield of(String type, ItemRegisterRequest request, Member member) {
         return new Shield(type, request, member);
@@ -31,5 +33,6 @@ public class Shield extends BaseItem{
     public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
         this.defenseStrength = request.getDefenseStrength();
+        this.specialMoveGage = request.getSpecialMoveGage();
     }
 }
