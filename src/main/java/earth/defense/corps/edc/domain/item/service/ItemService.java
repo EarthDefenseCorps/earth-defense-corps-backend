@@ -57,8 +57,8 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemRegisterResponse saveItem(String type, ItemRegisterRequest request) {
-        Long id = save(type, request, request.getMemberId());
+    public ItemRegisterResponse saveItem(ItemRegisterRequest request) {
+        Long id = save(request.getItemType(), request, request.getMemberId());
         return new ItemRegisterResponse(id, new ResponseHeader(200, "아이템 등록 성공"));
     }
 

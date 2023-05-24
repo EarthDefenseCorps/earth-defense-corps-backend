@@ -23,10 +23,9 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @PostMapping("/{type}")
-    public ResponseEntity<ItemRegisterResponse> register(@PathVariable String type, @RequestBody @Valid ItemRegisterRequest request) {
-        System.out.println(request);
-        return ResponseEntity.ok().body(itemService.saveItem(type.toUpperCase(Locale.ROOT), request));
+    @PostMapping
+    public ResponseEntity<ItemRegisterResponse> register(@RequestBody @Valid ItemRegisterRequest request) {
+        return ResponseEntity.ok().body(itemService.saveItem(request));
     }
 
     @GetMapping("/inventory")

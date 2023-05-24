@@ -12,8 +12,11 @@ public class ItemRegisterRequest{
     private int itemSN;
     private Boolean isEquipped;
     private String name;
+    private String itemDesc;
     private String itemGrade;
+    private String itemType;
     private int price;
+    private int upgradePrice;
     //String file_url;
     private int itemUpgrade;
     private int attackDamage;
