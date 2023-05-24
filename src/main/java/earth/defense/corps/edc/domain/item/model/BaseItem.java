@@ -1,7 +1,5 @@
 package earth.defense.corps.edc.domain.item.model;
 
-import static jakarta.persistence.FetchType.LAZY;
-
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
 import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
 import earth.defense.corps.edc.domain.member.model.Member;
@@ -9,7 +7,9 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -25,26 +25,17 @@ import org.hibernate.annotations.ColumnDefault;
 @Setter
 public class BaseItem {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
-
     private String name;
-
     private int price;
-
     ItemGrade itemGrade;
-
     ItemType type;
-
     private int itemUpgrade;
-
     private boolean isEquipped;
-
-
 //    String fileUrl;
-
-    @ManyToOne(fetch = LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private Member member;
 
     public BaseItem() {
@@ -68,5 +59,34 @@ public class BaseItem {
         this.price = request.getPrice();
         this.itemUpgrade = request.getItemUpgrade();
         this.member = member;
+    }
+    public void itemUpgrade(ItemUpgradeRequest request)
+    {
+        switch (this.getType()) {
+            case ARMOR -> {
+                Armor armor = (Armor) this;
+                armor.upgrade(request, this.member);
+            }
+            case GLOVES -> {
+                Gloves gloves = (Gloves) this;
+                gloves.upgrade(request, this.member);
+            }
+            case HELMET -> {
+                Helmet helmet = (Helmet) this;
+                helmet.upgrade(request, this.member);
+            }
+            case SHIELD -> {
+                Shield shield = (Shield) this;
+                shield.upgrade(request, this.member);
+            }
+            case SHOES -> {
+                Shoes shoes = (Shoes) this;
+                shoes.upgrade(request,this. member);
+            }
+            case WEAPON -> {
+                Weapon weapon = (Weapon) this;
+                weapon.upgrade(request, this.member);
+            }
+        }
     }
 }

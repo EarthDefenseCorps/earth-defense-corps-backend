@@ -22,8 +22,8 @@ public class ProfileMemberResponse {
         this.id = member.getId();
         this.name = member.getName();
         this.email = member.getEmail();
-        this.character_name = member.getCharacter_name();
-        this.possesing_gem = member.getPossessing_jem();
-        this.possesing_gold = member.getPossessing_gold();
+        this.character_name = member.getCharacterName();
+        this.possesing_gem = member.getPossessingGold();
+        this.possesing_gold = member.getPossessingGold();
     }
 }

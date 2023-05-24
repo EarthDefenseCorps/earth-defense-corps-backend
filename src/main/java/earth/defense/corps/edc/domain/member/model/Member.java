@@ -1,7 +1,9 @@
 package earth.defense.corps.edc.domain.member.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.domain.stage.model.Stage;
+import earth.defense.corps.edc.domain.stage.model.StagePhase;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -16,7 +18,7 @@ import java.util.List;
 public class Member {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id", nullable = false, unique = true)
     private Long id;
 
@@ -27,25 +29,26 @@ public class Member {
     private String name;
 
     @Column(nullable = false)
-    private int possessing_gold;
+    private int possessingGold;
 
     @Column(nullable = false)
-    private int possessing_jem;
-
-
+    private int possessingJem;
     @Column(nullable = false)
-    private String character_name;
+    private String characterName;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "id", fetch = FetchType.LAZY)
-    private final List<Stage> stage_clear_list = new ArrayList<Stage>();
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Stage> stageClearList = new ArrayList<>();
 
-    private Member(String name, String email, int gold, int jem, String character_name) {
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<BaseItem> items = new ArrayList<>();
+
+    private Member(String name, String email, int gold, int jem, String characterName) {
         this.name = name;
         this.email = email;
-        this.possessing_gold = gold;
-        this.possessing_jem=jem;
-        this.character_name = character_name;
+        this.possessingGold = gold;
+        this.possessingJem=jem;
+        this.characterName = characterName;
     }
 
     public static Member of(String name, String email, int gold, int jem, String character_name) {
@@ -57,14 +60,15 @@ public class Member {
     }
 
     public void modifyMemberGem(int gem) {
-        this.possessing_jem = gem;
+        this.possessingJem = gem;
     }
 
     public void modifyMemberGold(int gold) {
-        this.possessing_gold = gold;
+        this.possessingGold = gold;
     }
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
-
+    public void  initStageList(){
+        for (StagePhase phase : StagePhase.values()) {
+            this.stageClearList.add(Stage.of(false, phase,this));
+        }
+    }
 }
