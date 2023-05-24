@@ -28,6 +28,7 @@ public class BaseItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
+    private int itemSN;
     private String name;
     private int price;
     ItemGrade itemGrade;
@@ -47,6 +48,7 @@ public class BaseItem {
 
     protected BaseItem(String type, ItemRegisterRequest request, Member member) {
         this.name = request.getName();
+        this.itemSN = request.getItemSN();
         this.price = request.getPrice();
         this.type = ItemType.valueOf(type);
         this.itemGrade = ItemGrade.valueOf(request.getItemGrade());

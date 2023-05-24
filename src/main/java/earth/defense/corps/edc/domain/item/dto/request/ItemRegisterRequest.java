@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ItemRegisterRequest{
     private Long memberId;
+    private int itemSN;
     private Boolean isEquipped;
     private String name;
     private String itemGrade;
