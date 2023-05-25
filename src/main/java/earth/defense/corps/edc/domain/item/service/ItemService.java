@@ -70,6 +70,10 @@ public class ItemService {
         Member member = memberService.getMemberById(memberId);
         return new ItemListResponse(itemRepository.findAllByMember(member), new ResponseHeader(200, "아이템 리스트 불러오기 성공"));
     }
+    public ItemListResponse getItemListAll(Long memberId) {
+        Member member = memberService.getMemberById(memberId);
+        return new ItemListResponse(new ResponseHeader(200, "아이템 리스트 불러오기 성공"),itemRepository.findAllByMember(member));
+    }
 
     @Transactional
     public ItemUpgradeResponse upgradeItem(Long itemId, ItemUpgradeRequest request) {

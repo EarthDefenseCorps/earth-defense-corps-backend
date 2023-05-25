@@ -32,7 +32,10 @@ public class ItemController {
     public ResponseEntity<ItemListResponse> getInventory(@RequestParam("memberId") Long id){
         return ResponseEntity.ok().body(itemService.getItemList(id));
     }
-
+    @GetMapping("/inventory/all")
+    public ResponseEntity<ItemListResponse> getInventoryItemAll(@RequestParam("memberId") Long id){
+        return ResponseEntity.ok().body(itemService.getItemListAll(id));
+    }
     @PutMapping
     public ResponseEntity<ItemUpgradeResponse> updateItem(@RequestParam("itemId") Long id, @RequestBody @Valid ItemUpgradeRequest request) {
         return ResponseEntity.ok().body(itemService.upgradeItem(id, request));
