@@ -13,6 +13,6 @@ public class ItemListResponse {
 
     public ItemListResponse(List<BaseItem> itemList, ResponseHeader header) {
         this.header = header;
-        this.itemList = itemList;
+        this.itemList = itemList.stream().map(BaseItem::of).toList();
     }
 }

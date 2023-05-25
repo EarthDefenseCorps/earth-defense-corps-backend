@@ -46,6 +46,9 @@ public class BaseItem {
     public static BaseItem of(String grade, ItemRegisterRequest request, Member member) {
         return new BaseItem(grade, request, member);
     }
+    public static BaseItem of(BaseItem item) {
+        return new BaseItem(item);
+    }
 
     protected BaseItem(String type, ItemRegisterRequest request, Member member) {
         this.name = request.getName();
@@ -58,6 +61,18 @@ public class BaseItem {
         this.itemUpgrade = request.getItemUpgrade();
         this.member = member;
         this.isEquipped = request.getIsEquipped();
+    }
+    protected BaseItem(BaseItem item) {
+        this.id = item.id;
+        this.name = item.getName();
+        this.itemSN = item.getItemSN();
+        this.itemDesc = item.getItemDesc();
+        this.price = item.getPrice();
+        this.upgradePrice = item.getUpgradePrice();
+        this.type = item.getType();
+        this.itemGrade = item.getItemGrade();
+        this.itemUpgrade = item.getItemUpgrade();
+        this.isEquipped = item.isEquipped();
     }
 
     protected void upgrade(ItemUpgradeRequest request, Member member) {
