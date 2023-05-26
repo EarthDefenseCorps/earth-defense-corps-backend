@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class StageClearRequest {
     private int stage;
-    private String email;
+    private String gpgsId;
 }
