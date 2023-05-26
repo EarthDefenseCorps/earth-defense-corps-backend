@@ -43,14 +43,14 @@ public class ItemResponse {
     @Getter @Setter
     public static  class ItemMemberInfoDto{
         private Long id;
-        private String email;
+        private String gpgsId;
         private String name;
         private int possessingGold;
         private int possessingJem;
         public ItemMemberInfoDto(Member member){
              this.id = member.getId();
              this.name = member.getName();
-             this.email = member.getGpgsId();
+             this.gpgsId = member.getGpgsId();
              this.name = member.getName();
              this.possessingJem = member.getPossessingJem();
              this.possessingGold = member.getPossessingGold();

@@ -10,10 +10,10 @@ public class ItemUpgradeResponse {
     private final ResponseHeader header;
     private final Long itemId;
 
-    private final BaseItem upgradedItem;
+    private final ItemResponse.ItemResponseDto upgradedItem;
 
     public ItemUpgradeResponse(BaseItem item, ResponseHeader header) {
-        this.upgradedItem = item;
+        this.upgradedItem = new ItemResponse.ItemResponseDto(item);
         this.itemId = item.getId();
         this.header = header;
     }
