@@ -31,7 +31,7 @@ public class StageController {
 
     @PutMapping("/clear")
     public ResponseEntity<StageResponse> setClear(@RequestBody StageClearRequest request) {
-        Member member = memberRepository.findByGpgsId(request.getEmail()).orElseThrow(MemberNotFoundException::new);
+        Member member = memberRepository.findByGpgsId(request.getGpgsId()).orElseThrow(MemberNotFoundException::new);
         StageResponse response = stageService.setStageClear(member,StagePhase.getPhaseByInt(request.getStage()));
         return ResponseEntity.ok().body(response);
     }

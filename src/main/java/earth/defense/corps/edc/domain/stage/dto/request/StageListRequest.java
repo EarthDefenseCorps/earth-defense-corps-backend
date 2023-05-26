@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class StageListRequest {
-    private String email;
+    private String gpgsId;
 }
