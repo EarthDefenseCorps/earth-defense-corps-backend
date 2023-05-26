@@ -8,9 +8,11 @@ import lombok.Data;
 public class ItemUpgradeRequest {
     int price;
     int itemUpgrade;
+    int upgradePrice;
     int attackDamage;
-    int criticalDamageProbability;
-    int criticalDamage;
-    int strength;
-    int defenseStrength;
+    float criticalDamageProbability;
+    float criticalDamage;
+    float strength;
+    float defenseStrength;
+    float specialMoveGage;
 }

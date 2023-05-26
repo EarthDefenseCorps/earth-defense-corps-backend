@@ -6,16 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class SignUpRequest {
 
     @NotBlank(message = "이름을 입력해주세요.")
     private String name;
 
     @NotBlank(message = "이메일을 입력해주세요.")
-    private String email;
+    private String gpgsId;
 
-
-    @Nullable
     private String imageUrl;
 }
