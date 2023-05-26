@@ -9,7 +9,7 @@ import lombok.Getter;
 public class ProfileMemberResponse {
     private final Long id;
     private final String name;
-    private final String email;
+    private final String gpgsId;
     private final String character_name;
     private final int possesing_gold;
     private final int possesing_gem;
@@ -21,7 +21,7 @@ public class ProfileMemberResponse {
         this.header = responseHeader;
         this.id = member.getId();
         this.name = member.getName();
-        this.email = member.getEmail();
+        this.gpgsId = member.getGpgsId();
         this.character_name = member.getCharacterName();
         this.possesing_gem = member.getPossessingGold();
         this.possesing_gold = member.getPossessingGold();

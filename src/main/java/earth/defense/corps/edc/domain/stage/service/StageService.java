@@ -40,7 +40,7 @@ public class StageService {
     @Transactional
     public StageResponse setStageClear(StageClearRequest request) {
 
-        Member member = memberService.findByEmail(request.getEmail());
+        Member member = memberService.findByGpgsId(request.getEmail());
         StagePhase stagePhase = StagePhase.getPhaseByInt(request.getStage());
 
         Stage stage = getByPhaseAndMember(stagePhase,member);

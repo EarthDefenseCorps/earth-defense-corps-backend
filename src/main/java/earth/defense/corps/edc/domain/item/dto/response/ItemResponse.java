@@ -50,7 +50,7 @@ public class ItemResponse {
         public ItemMemberInfoDto(Member member){
              this.id = member.getId();
              this.name = member.getName();
-             this.email = member.getEmail();
+             this.email = member.getGpgsId();
              this.name = member.getName();
              this.possessingJem = member.getPossessingJem();
              this.possessingGold = member.getPossessingGold();
