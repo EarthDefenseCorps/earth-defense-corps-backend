@@ -23,7 +23,7 @@ public class Member {
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email;
+    private String gpgsId;
 
     @Column(nullable = false)
     private String name;
@@ -43,16 +43,16 @@ public class Member {
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<BaseItem> items = new ArrayList<>();
 
-    private Member(String name, String email, int gold, int jem, String characterName) {
+    private Member(String name, String gpgsId, int gold, int jem, String characterName) {
         this.name = name;
-        this.email = email;
+        this.gpgsId = gpgsId;
         this.possessingGold = gold;
         this.possessingJem=jem;
         this.characterName = characterName;
     }
 
-    public static Member of(String name, String email, int gold, int jem, String character_name) {
-        return new Member(name, email, gold, jem, character_name);
+    public static Member of(String name, String gpgsId, int gold, int jem, String character_name) {
+        return new Member(name, gpgsId, gold, jem, character_name);
     }
 
     public void modifyMemberInfo(String name) {
