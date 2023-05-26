@@ -16,6 +16,5 @@ public class ItemUpgradeResponse {
         this.upgradedItem = item;
         this.itemId = item.getId();
         this.header = header;
-
     }
 }

@@ -12,7 +12,7 @@ public class SignUpRequest {
     private String name;
 
     @NotBlank(message = "이메일을 입력해주세요.")
-    private String email;
+    private String gpgsId;
 
     private String imageUrl;
 }
