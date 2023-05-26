@@ -21,10 +21,10 @@ public class Gloves extends BaseItem{
     private int attackDamage;
 
 
-    private int criticalDamageProbability;
+    private float criticalDamageProbability;
 
 
-    private int criticalDamage;
+    private float criticalDamage;
 
     private Gloves(String type, ItemRegisterRequest request, Member member) {
         super(type, request, member);
@@ -38,7 +38,7 @@ public class Gloves extends BaseItem{
 
     public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
-        this.attackDamage = request.getCriticalDamage();
+        this.attackDamage = request.getAttackDamage();
         this.criticalDamageProbability = request.getCriticalDamageProbability();
         this.criticalDamage = request.getCriticalDamage();
     }

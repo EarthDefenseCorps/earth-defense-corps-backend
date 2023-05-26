@@ -35,5 +35,8 @@ public class StageController {
         StageResponse response = stageService.setStageClear(member,StagePhase.getPhaseByInt(request.getStage()));
         return ResponseEntity.ok().body(response);
     }
-
+    @PutMapping("/cleared") //@PutMapping("/clear/{level}") , header email
+    public ResponseEntity<StageResponse> stageClear(@RequestBody StageClearRequest request) {
+        return ResponseEntity.ok().body(stageService.setStageClear(request));
+    }
 }

@@ -9,7 +9,7 @@ public class SignUpResponse {
 
     private String email;
 
-    private final ResponseHeader header;
+    private ResponseHeader header;
 
 
     public SignUpResponse(ResponseHeader responseHeader, String name, String email) {
