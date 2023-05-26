@@ -11,13 +11,8 @@ import java.util.List;
 @Data
 public class ItemListResponse {
     private final ResponseHeader header;
-    private List<BaseItem> itemList;
     private List<ItemResponseDto> items;
 
-    public ItemListResponse(List<BaseItem> itemList, ResponseHeader header) {
-        this.header = header;
-        this.itemList = itemList.stream().map(BaseItem::of).toList();
-    }
     public ItemListResponse( ResponseHeader header,List<BaseItem> itemList) {
         this.header = header;
         this.items = itemList.stream().map(ItemResponseDto::new).collect(Collectors.toList());

@@ -29,8 +29,12 @@ public class ItemResponse {
 
         public ItemResponseDto(BaseItem baseItem) {
             this.id = baseItem.getId();
+            this.name = baseItem.getName();
             this.itemSN = baseItem.getItemSN();
-            //.. else ....
+            this.upgradePrice = baseItem.getUpgradePrice();
+            this.itemDesc = baseItem.getItemDesc();
+            this.itemUpgrade = baseItem.getItemUpgrade();
+            this.isEquipped = baseItem.isEquipped();
             this.itemGrade = baseItem.getItemGrade();
             this.type = baseItem.getType();
             this.member = new ItemMemberInfoDto(baseItem.getMember());
@@ -46,7 +50,10 @@ public class ItemResponse {
         public ItemMemberInfoDto(Member member){
              this.id = member.getId();
              this.name = member.getName();
-             //..
+             this.email = member.getEmail();
+             this.name = member.getName();
+             this.possessingJem = member.getPossessingJem();
+             this.possessingGold = member.getPossessingGold();
         }
     }
 }
