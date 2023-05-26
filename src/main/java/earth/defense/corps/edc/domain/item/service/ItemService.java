@@ -57,8 +57,8 @@ public class ItemService {
     }
 
     @Transactional
-    public ItemRegisterResponse saveItem(String type, ItemRegisterRequest request) {
-        Long id = save(type, request, request.getMemberId());
+    public ItemRegisterResponse saveItem(ItemRegisterRequest request) {
+        Long id = save(request.getItemType(), request, request.getMemberId());
         return new ItemRegisterResponse(id, new ResponseHeader(200, "아이템 등록 성공"));
     }
 
@@ -66,9 +66,9 @@ public class ItemService {
         return itemRepository.findById(itemId).orElseThrow();
     }
 
-    public ItemListResponse getItemList(Long memberId) {
+    public ItemListResponse getItemListAll(Long memberId) {
         Member member = memberService.getMemberById(memberId);
-        return new ItemListResponse(itemRepository.findAllByMember(member), new ResponseHeader(200, "아이템 리스트 불러오기 성공"));
+        return new ItemListResponse(new ResponseHeader(200, "아이템 리스트 불러오기 성공"),itemRepository.findAllByMember(member));
     }
 
     @Transactional

@@ -17,9 +17,9 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 public class Armor extends BaseItem{
 
-    private int strength;
+    private float strength;
 
-    private int defenseStrength;
+    private float defenseStrength;
 
     private Armor(String type, ItemRegisterRequest request, Member member) {
         super(type, request, member);

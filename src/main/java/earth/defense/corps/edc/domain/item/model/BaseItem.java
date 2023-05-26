@@ -16,7 +16,6 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -28,8 +27,11 @@ public class BaseItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
+    private int itemSN;
+    private String itemDesc;
     private String name;
     private int price;
+    private int upgradePrice;
     ItemGrade itemGrade;
     ItemType type;
     private int itemUpgrade;
@@ -44,15 +46,33 @@ public class BaseItem {
     public static BaseItem of(String grade, ItemRegisterRequest request, Member member) {
         return new BaseItem(grade, request, member);
     }
+    public static BaseItem of(BaseItem item) {
+        return new BaseItem(item);
+    }
 
     protected BaseItem(String type, ItemRegisterRequest request, Member member) {
         this.name = request.getName();
+        this.itemSN = request.getItemSN();
+        this.itemDesc = request.getItemDesc();
         this.price = request.getPrice();
+        this.upgradePrice = request.getUpgradePrice();
         this.type = ItemType.valueOf(type);
         this.itemGrade = ItemGrade.valueOf(request.getItemGrade());
         this.itemUpgrade = request.getItemUpgrade();
         this.member = member;
         this.isEquipped = request.getIsEquipped();
+    }
+    protected BaseItem(BaseItem item) {
+        this.id = item.id;
+        this.name = item.getName();
+        this.itemSN = item.getItemSN();
+        this.itemDesc = item.getItemDesc();
+        this.price = item.getPrice();
+        this.upgradePrice = item.getUpgradePrice();
+        this.type = item.getType();
+        this.itemGrade = item.getItemGrade();
+        this.itemUpgrade = item.getItemUpgrade();
+        this.isEquipped = item.isEquipped();
     }
 
     protected void upgrade(ItemUpgradeRequest request, Member member) {

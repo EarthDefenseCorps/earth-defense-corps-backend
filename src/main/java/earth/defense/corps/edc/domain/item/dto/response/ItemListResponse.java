@@ -1,7 +1,9 @@
 package earth.defense.corps.edc.domain.item.dto.response;
 
+import earth.defense.corps.edc.domain.item.dto.response.ItemResponse.ItemResponseDto;
 import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.global.ResponseHeader;
+import java.util.stream.Collectors;
 import lombok.Data;
 
 import java.util.List;
@@ -9,10 +11,10 @@ import java.util.List;
 @Data
 public class ItemListResponse {
     private final ResponseHeader header;
-    private List<BaseItem> itemList;
+    private List<ItemResponseDto> items;
 
-    public ItemListResponse(List<BaseItem> itemList, ResponseHeader header) {
+    public ItemListResponse( ResponseHeader header,List<BaseItem> itemList) {
         this.header = header;
-        this.itemList = itemList;
+        this.items = itemList.stream().map(ItemResponseDto::new).collect(Collectors.toList());
     }
 }

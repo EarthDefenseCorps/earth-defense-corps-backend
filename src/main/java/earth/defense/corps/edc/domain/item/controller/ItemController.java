@@ -23,17 +23,19 @@ public class ItemController {
 
     private final ItemService itemService;
 
-    @PostMapping("/{type}")
-    public ResponseEntity<ItemRegisterResponse> register(@PathVariable String type, @RequestBody @Valid ItemRegisterRequest request) {
-        System.out.println(request);
-        return ResponseEntity.ok().body(itemService.saveItem(type.toUpperCase(Locale.ROOT), request));
+    @PostMapping
+    public ResponseEntity<ItemRegisterResponse> register(@RequestBody @Valid ItemRegisterRequest request) {
+        return ResponseEntity.ok().body(itemService.saveItem(request));
     }
 
     @GetMapping("/inventory")
     public ResponseEntity<ItemListResponse> getInventory(@RequestParam("memberId") Long id){
-        return ResponseEntity.ok().body(itemService.getItemList(id));
+        return ResponseEntity.ok().body(itemService.getItemListAll(id));
     }
-
+    @GetMapping("/inventory/all")
+    public ResponseEntity<ItemListResponse> getInventoryItemAll(@RequestParam("memberId") Long id){
+        return ResponseEntity.ok().body(itemService.getItemListAll(id));
+    }
     @PutMapping
     public ResponseEntity<ItemUpgradeResponse> updateItem(@RequestParam("itemId") Long id, @RequestBody @Valid ItemUpgradeRequest request) {
         return ResponseEntity.ok().body(itemService.upgradeItem(id, request));
