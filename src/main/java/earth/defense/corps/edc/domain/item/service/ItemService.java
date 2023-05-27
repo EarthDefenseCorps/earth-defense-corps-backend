@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -25,49 +27,24 @@ public class ItemService {
     private final MemberService memberService;
 
     @Transactional
-    public Long save(String type, ItemRegisterRequest request, Long memberId) {
-        ItemType itemType = ItemType.valueOf(type);
-        Member member = memberService.getMemberById(memberId);
-        BaseItem savedItem;
-
-        switch (itemType) {
-            case ARMOR:
-                savedItem = itemRepository.save(Armor.of(type, request, member));
-                break;
-            case GLOVES:
-                savedItem = itemRepository.save(Gloves.of(type, request, member));
-                break;
-            case HELMET:
-                savedItem = itemRepository.save(Helmet.of(type, request, member));
-                break;
-            case SHIELD:
-                savedItem = itemRepository.save(Shield.of(type, request, member));
-                break;
-            case SHOES:
-                savedItem = itemRepository.save(Shoes.of(type, request, member));
-                break;
-            case WEAPON:
-                savedItem = itemRepository.save(Weapon.of(type, request, member));
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid item type: " + type);
-        }
-
-        return savedItem.getId();
+    public BaseItem save(ItemRegisterRequest request) {
+        BaseItem item = new BaseItem();
+        Member member = memberService.findByGpgsId(request.getGpgsId());
+        return itemRepository.save(item.itemSave(request, member));
     }
 
     @Transactional
     public ItemRegisterResponse saveItem(ItemRegisterRequest request) {
-        Long id = save(request.getItemType(), request, request.getMemberId());
-        return new ItemRegisterResponse(id, new ResponseHeader(200, "아이템 등록 성공"));
+        BaseItem item = save(request);
+        return new ItemRegisterResponse(item.getId(), new ResponseHeader(200, "아이템 등록 성공"));
     }
 
     public BaseItem getById(Long itemId) {
         return itemRepository.findById(itemId).orElseThrow();
     }
 
-    public ItemListResponse getItemListAll(Long memberId) {
-        Member member = memberService.getMemberById(memberId);
+    public ItemListResponse getItemListAll(String gpgsId) {
+        Member member = memberService.getMemberById(gpgsId);
         return new ItemListResponse(new ResponseHeader(200, "아이템 리스트 불러오기 성공"),itemRepository.findAllByMember(member));
     }
 

@@ -24,13 +24,13 @@ public class Helmet extends BaseItem{
 
     private float strength;
 
-    private Helmet(String type, ItemRegisterRequest request, Member member){
-        super(type, request, member);
+    private Helmet(ItemRegisterRequest request, Member member){
+        super(request, member);
         this.strength = request.getStrength();
         this.defenseStrength = request.getDefenseStrength();
     }
-    public static Helmet of(String type, ItemRegisterRequest request, Member member) {
-        return new Helmet(type, request, member);
+    public static Helmet of(ItemRegisterRequest request, Member member) {
+        return new Helmet( request, member);
     }
     public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
