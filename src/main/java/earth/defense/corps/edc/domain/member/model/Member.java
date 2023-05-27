@@ -71,4 +71,8 @@ public class Member {
             this.stageClearList.add(Stage.of(false, phase,this));
         }
     }
+
+    public void updateMemberGoldByItemPrice(int price) {
+        this.possessingGold = this.getPossessingGold() + price;
+    }
 }
