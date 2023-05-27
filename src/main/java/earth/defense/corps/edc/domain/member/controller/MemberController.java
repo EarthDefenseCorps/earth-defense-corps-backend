@@ -34,8 +34,8 @@ public class MemberController {
     }
 
     @GetMapping("/info")
-    public ResponseEntity<ProfileMemberResponse> getInfo(@RequestParam("identifier") String request) {
-        ProfileMemberResponse response = memberService.getInfo(request);
+    public ResponseEntity<ProfileMemberResponse> getInfo(@RequestParam("gpgsId") String id) {
+        ProfileMemberResponse response = memberService.getInfo(id);
         return ResponseEntity.ok().body(response);
     }
 
