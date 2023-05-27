@@ -36,6 +36,7 @@ public class ItemResponse {
             this.id = baseItem.getId();
             this.name = baseItem.getName();
             this.itemSN = baseItem.getItemSN();
+            this.price = baseItem.getPrice();
             this.upgradePrice = baseItem.getUpgradePrice();
             this.itemDesc = baseItem.getItemDesc();
             this.itemUpgrade = baseItem.getItemUpgrade();
