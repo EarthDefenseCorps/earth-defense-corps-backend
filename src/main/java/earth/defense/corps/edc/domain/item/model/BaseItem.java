@@ -82,6 +82,7 @@ public class BaseItem {
     }
     public void itemUpgrade(ItemUpgradeRequest request)
     {
+        this.upgradePrice = request.getUpgradePrice();
         switch (this.getType()) {
             case ARMOR -> {
                 Armor armor = (Armor) this;

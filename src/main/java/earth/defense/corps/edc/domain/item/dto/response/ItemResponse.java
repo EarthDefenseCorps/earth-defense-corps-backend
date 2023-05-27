@@ -46,13 +46,13 @@ public class ItemResponse {
         private String gpgsId;
         private String name;
         private int possessingGold;
-        private int possessingJem;
+        private int possessingGem;
         public ItemMemberInfoDto(Member member){
              this.id = member.getId();
              this.name = member.getName();
              this.gpgsId = member.getGpgsId();
              this.name = member.getName();
-             this.possessingJem = member.getPossessingJem();
+             this.possessingGem = member.getPossessingGem();
              this.possessingGold = member.getPossessingGold();
         }
     }
