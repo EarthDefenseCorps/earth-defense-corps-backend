@@ -43,6 +43,13 @@ public class BaseItem {
     public BaseItem() {
     }
 
+    public void equipItem(BaseItem item) {
+        this.isEquipped = true;
+    }
+    public void unEquipItem(BaseItem item) {
+        this.isEquipped = false;
+    }
+
     public static BaseItem of(BaseItem item) {
         return new BaseItem(item);
     }

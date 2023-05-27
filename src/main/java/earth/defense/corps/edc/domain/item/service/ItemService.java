@@ -2,15 +2,13 @@ package earth.defense.corps.edc.domain.item.service;
 
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
 import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
-import earth.defense.corps.edc.domain.item.dto.response.ItemDeleteResponse;
-import earth.defense.corps.edc.domain.item.dto.response.ItemListResponse;
-import earth.defense.corps.edc.domain.item.dto.response.ItemRegisterResponse;
-import earth.defense.corps.edc.domain.item.dto.response.ItemUpgradeResponse;
+import earth.defense.corps.edc.domain.item.dto.response.*;
 import earth.defense.corps.edc.domain.item.model.*;
 import earth.defense.corps.edc.domain.item.repository.*;
 import earth.defense.corps.edc.domain.member.model.Member;
 import earth.defense.corps.edc.domain.member.service.MemberService;
 import earth.defense.corps.edc.global.ResponseHeader;
+import earth.defense.corps.edc.domain.item.dto.response.ItemResponse.ItemResponseDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -63,5 +61,16 @@ public class ItemService {
         member.modifyMemberGold(currentGold + item.getPrice());
         itemRepository.deleteById(itemId);
         return new ItemDeleteResponse(new ResponseHeader(200, "아이템 삭제 완료"));
+    }
+
+    @Transactional
+    public ItemResponseDto switchItem(Long itemId) {
+        BaseItem item = itemRepository.findById(itemId).orElseThrow();
+        if(item.isEquipped()){
+            item.unEquipItem(item);
+        }else {
+            item.equipItem(item);
+        }
+        return new ItemResponseDto(item);
     }
 }
