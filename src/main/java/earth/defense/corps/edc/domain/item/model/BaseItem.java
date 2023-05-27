@@ -43,10 +43,10 @@ public class BaseItem {
     public BaseItem() {
     }
 
-    public void equipItem(BaseItem item) {
+    public void equipItem() {
         this.isEquipped = true;
     }
-    public void unEquipItem(BaseItem item) {
+    public void unEquipItem() {
         this.isEquipped = false;
     }
 
@@ -78,20 +78,6 @@ public class BaseItem {
         this.itemUpgrade = item.getItemUpgrade();
         this.isEquipped = item.isEquipped();
     }
-
-    protected void save(ItemRegisterRequest request, Member member) {
-        this.name = request.getName();
-        this.itemSN = request.getItemSN();
-        this.itemDesc = request.getItemDesc();
-        this.price = request.getPrice();
-        this.upgradePrice = request.getUpgradePrice();
-        this.type = ItemType.valueOf(request.getItemType());
-        this.itemGrade = ItemGrade.valueOf(request.getItemGrade());
-        this.itemUpgrade = request.getItemUpgrade();
-        this.member = member;
-        this.isEquipped = request.getIsEquipped();
-    }
-
     protected void upgrade(ItemUpgradeRequest request, Member member) {
         this.price = request.getPrice();
         this.itemUpgrade = request.getItemUpgrade();
@@ -152,4 +138,14 @@ public class BaseItem {
         }
         return null;
     }
+
+    public void updateMemberGold(Boolean plus) {
+        if(plus) {
+            this.member.updateMemberGoldByItemPrice(this.price);
+        }
+        else {
+            this.member.updateMemberGoldByItemPrice(this.price*(-1));
+        }
+    }
+
 }
