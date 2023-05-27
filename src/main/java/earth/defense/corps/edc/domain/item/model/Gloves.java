@@ -26,14 +26,14 @@ public class Gloves extends BaseItem{
 
     private float criticalDamage;
 
-    private Gloves(String type, ItemRegisterRequest request, Member member) {
-        super(type, request, member);
+    private Gloves(ItemRegisterRequest request, Member member) {
+        super(request, member);
         this.attackDamage = request.getAttackDamage();
         this.criticalDamageProbability = request.getCriticalDamageProbability();
         this.criticalDamage = request.getCriticalDamage();
     }
-    public static Gloves of(String type, ItemRegisterRequest request, Member member) {
-        return new Gloves(type, request, member);
+    public static Gloves of(ItemRegisterRequest request, Member member) {
+        return new Gloves(request, member);
     }
 
     public void upgrade(ItemUpgradeRequest request, Member member) {

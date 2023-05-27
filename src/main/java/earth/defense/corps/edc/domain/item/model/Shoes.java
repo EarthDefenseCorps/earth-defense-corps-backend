@@ -20,12 +20,12 @@ public class Shoes extends BaseItem{
 
     private float strength;
 
-    private Shoes(String type, ItemRegisterRequest request, Member member) {
-        super(type, request, member);
+    private Shoes(ItemRegisterRequest request, Member member) {
+        super(request, member);
         this.strength = request.getStrength();
     }
-    public static Shoes of(String type, ItemRegisterRequest request, Member member) {
-        return new Shoes(type, request, member);
+    public static Shoes of(ItemRegisterRequest request, Member member) {
+        return new Shoes(request, member);
     }
 
     public void upgrade(ItemUpgradeRequest request, Member member) {

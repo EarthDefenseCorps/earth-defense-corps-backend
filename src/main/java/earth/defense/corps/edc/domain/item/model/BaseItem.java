@@ -43,20 +43,24 @@ public class BaseItem {
     public BaseItem() {
     }
 
-    public static BaseItem of(String grade, ItemRegisterRequest request, Member member) {
-        return new BaseItem(grade, request, member);
+    public void equipItem(BaseItem item) {
+        this.isEquipped = true;
     }
+    public void unEquipItem(BaseItem item) {
+        this.isEquipped = false;
+    }
+
     public static BaseItem of(BaseItem item) {
         return new BaseItem(item);
     }
 
-    protected BaseItem(String type, ItemRegisterRequest request, Member member) {
+    protected BaseItem(ItemRegisterRequest request, Member member) {
         this.name = request.getName();
         this.itemSN = request.getItemSN();
         this.itemDesc = request.getItemDesc();
         this.price = request.getPrice();
         this.upgradePrice = request.getUpgradePrice();
-        this.type = ItemType.valueOf(type);
+        this.type = ItemType.valueOf(request.getItemType());
         this.itemGrade = ItemGrade.valueOf(request.getItemGrade());
         this.itemUpgrade = request.getItemUpgrade();
         this.member = member;
@@ -75,9 +79,23 @@ public class BaseItem {
         this.isEquipped = item.isEquipped();
     }
 
+    protected void save(ItemRegisterRequest request, Member member) {
+        this.name = request.getName();
+        this.itemSN = request.getItemSN();
+        this.itemDesc = request.getItemDesc();
+        this.price = request.getPrice();
+        this.upgradePrice = request.getUpgradePrice();
+        this.type = ItemType.valueOf(request.getItemType());
+        this.itemGrade = ItemGrade.valueOf(request.getItemGrade());
+        this.itemUpgrade = request.getItemUpgrade();
+        this.member = member;
+        this.isEquipped = request.getIsEquipped();
+    }
+
     protected void upgrade(ItemUpgradeRequest request, Member member) {
         this.price = request.getPrice();
         this.itemUpgrade = request.getItemUpgrade();
+        this.upgradePrice = request.getUpgradePrice();
         this.member = member;
     }
     public void itemUpgrade(ItemUpgradeRequest request)
@@ -108,5 +126,30 @@ public class BaseItem {
                 weapon.upgrade(request, this.member);
             }
         }
+    }
+
+    public BaseItem itemSave(ItemRegisterRequest request, Member member) {
+        ItemType type = ItemType.valueOf(request.getItemType());
+        switch (type) {
+            case ARMOR -> {
+                return Armor.of(request, member);
+            }
+            case GLOVES -> {
+                return Gloves.of(request, member);
+            }
+            case HELMET -> {
+                return Helmet.of(request, member);
+            }
+            case SHIELD -> {
+                return Shield.of(request, member);
+            }
+            case SHOES -> {
+                return Shoes.of(request, member);
+            }
+            case WEAPON -> {
+                return Weapon.of(request, member);
+            }
+        }
+        return null;
     }
 }

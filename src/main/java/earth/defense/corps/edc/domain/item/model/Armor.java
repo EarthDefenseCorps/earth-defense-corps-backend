@@ -21,13 +21,13 @@ public class Armor extends BaseItem{
 
     private float defenseStrength;
 
-    private Armor(String type, ItemRegisterRequest request, Member member) {
-        super(type, request, member);
+    private Armor(ItemRegisterRequest request, Member member) {
+        super(request, member);
         this.strength = request.getStrength();
         this.defenseStrength = request.getDefenseStrength();
     }
-    public static Armor of(String type, ItemRegisterRequest request, Member member) {
-        return new Armor(type, request, member);
+    public static Armor of(ItemRegisterRequest request, Member member) {
+        return new Armor(request, member);
     }
 
     public void upgrade(ItemUpgradeRequest request, Member member) {

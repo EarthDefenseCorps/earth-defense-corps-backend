@@ -1,8 +1,6 @@
 package earth.defense.corps.edc.domain.item.dto.response;
 
-import earth.defense.corps.edc.domain.item.model.BaseItem;
-import earth.defense.corps.edc.domain.item.model.ItemGrade;
-import earth.defense.corps.edc.domain.item.model.ItemType;
+import earth.defense.corps.edc.domain.item.model.*;
 import earth.defense.corps.edc.domain.member.model.Member;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
@@ -12,6 +10,7 @@ import lombok.Setter;
 
 
 public class ItemResponse {
+
     @Data
     @AllArgsConstructor
     public static  class ItemResponseDto {
@@ -26,6 +25,12 @@ public class ItemResponse {
         private int itemUpgrade;
         private boolean isEquipped;
         private ItemMemberInfoDto member;
+        private int attackDamage;
+        private float criticalDamageProbability;
+        private float criticalDamage;
+        private float strength;
+        private float defenseStrength;
+        private float specialMoveGage;
 
         public ItemResponseDto(BaseItem baseItem) {
             this.id = baseItem.getId();
@@ -38,6 +43,39 @@ public class ItemResponse {
             this.itemGrade = baseItem.getItemGrade();
             this.type = baseItem.getType();
             this.member = new ItemMemberInfoDto(baseItem.getMember());
+
+            switch (type) {
+                case ARMOR -> {
+                    Armor armor = (Armor) baseItem;
+                    this.strength = armor.getStrength();
+                    this.defenseStrength = armor.getDefenseStrength();
+                }
+                case GLOVES -> {
+                    Gloves gloves = (Gloves) baseItem;
+                    this.attackDamage = gloves.getAttackDamage();
+                    this.criticalDamageProbability = gloves.getCriticalDamageProbability();
+                    this.criticalDamage = gloves.getCriticalDamage();
+                }
+                case HELMET -> {
+                    Helmet helmet = (Helmet) baseItem;
+                    this.strength = helmet.getStrength();
+                    this.defenseStrength = helmet.getDefenseStrength();
+                }
+                case SHIELD -> {
+                    Shield shield = (Shield) baseItem;
+                    this.defenseStrength = shield.getDefenseStrength();
+                    this.specialMoveGage = shield.getSpecialMoveGage();
+                }
+                case SHOES -> {
+                    Shoes shoes = (Shoes) baseItem;
+                    this.strength = shoes.getStrength();
+                }
+                case WEAPON -> {
+                    Weapon weapon = (Weapon) baseItem;
+                    this.attackDamage = weapon.getAttackDamage();
+                    this.criticalDamageProbability = weapon.getCriticalDamageProbability();
+                }
+            }
         }
     }
     @Getter @Setter
@@ -46,13 +84,13 @@ public class ItemResponse {
         private String gpgsId;
         private String name;
         private int possessingGold;
-        private int possessingJem;
+        private int possessingGem;
         public ItemMemberInfoDto(Member member){
              this.id = member.getId();
              this.name = member.getName();
              this.gpgsId = member.getGpgsId();
              this.name = member.getName();
-             this.possessingJem = member.getPossessingJem();
+             this.possessingGem = member.getPossessingGem();
              this.possessingGold = member.getPossessingGold();
         }
     }
