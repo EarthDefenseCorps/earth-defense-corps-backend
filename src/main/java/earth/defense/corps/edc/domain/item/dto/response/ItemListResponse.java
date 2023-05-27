@@ -13,7 +13,7 @@ public class ItemListResponse {
     private final ResponseHeader header;
     private List<ItemResponseDto> items;
 
-    public ItemListResponse( ResponseHeader header,List<BaseItem> itemList) {
+    public ItemListResponse(ResponseHeader header,List<BaseItem> itemList) {
         this.header = header;
         this.items = itemList.stream().map(ItemResponseDto::new).collect(Collectors.toList());
     }

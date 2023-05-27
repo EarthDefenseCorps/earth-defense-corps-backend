@@ -7,7 +7,7 @@ import lombok.Getter;
 public class SignUpResponse {
     private String name;
 
-    private String email;
+    private String gpgsId;
 
     private ResponseHeader header;
 
@@ -15,6 +15,6 @@ public class SignUpResponse {
     public SignUpResponse(ResponseHeader responseHeader, String name, String email) {
         this.header = responseHeader;
         this.name = name;
-        this.email = email;
+        this.gpgsId = email;
     }
 }

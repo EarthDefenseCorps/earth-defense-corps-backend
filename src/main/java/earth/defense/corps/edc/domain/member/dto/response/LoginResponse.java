@@ -5,11 +5,11 @@ import lombok.Getter;
 
 @Getter
 public class LoginResponse {
-    private final String email;
+    private final String gpgsId;
     private final ResponseHeader header;
 
-    public LoginResponse(ResponseHeader responseHeader, String email) {
+    public LoginResponse(ResponseHeader responseHeader, String gpgsId) {
         this.header = responseHeader;
-        this.email = email;
+        this.gpgsId = gpgsId;
     }
 }

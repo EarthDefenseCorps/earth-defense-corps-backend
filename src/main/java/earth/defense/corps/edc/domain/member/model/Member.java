@@ -32,7 +32,7 @@ public class Member {
     private int possessingGold;
 
     @Column(nullable = false)
-    private int possessingJem;
+    private int possessingGem;
     @Column(nullable = false)
     private String characterName;
 
@@ -43,11 +43,11 @@ public class Member {
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<BaseItem> items = new ArrayList<>();
 
-    private Member(String name, String gpgsId, int gold, int jem, String characterName) {
+    private Member(String name, String gpgsId, int gold, int gem, String characterName) {
         this.name = name;
         this.gpgsId = gpgsId;
         this.possessingGold = gold;
-        this.possessingJem=jem;
+        this.possessingGem=gem;
         this.characterName = characterName;
     }
 
@@ -60,7 +60,7 @@ public class Member {
     }
 
     public void modifyMemberGem(int gem) {
-        this.possessingJem = gem;
+        this.possessingGem = gem;
     }
 
     public void modifyMemberGold(int gold) {

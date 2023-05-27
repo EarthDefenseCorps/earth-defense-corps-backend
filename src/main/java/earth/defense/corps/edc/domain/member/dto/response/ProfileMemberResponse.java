@@ -10,9 +10,9 @@ public class ProfileMemberResponse {
     private final Long id;
     private final String name;
     private final String gpgsId;
-    private final String character_name;
-    private final int possesing_gold;
-    private final int possesing_gem;
+    private final String characterName;
+    private final int possesingGold;
+    private final int possesingGem;
 
     private final ResponseHeader header;
 
@@ -22,8 +22,8 @@ public class ProfileMemberResponse {
         this.id = member.getId();
         this.name = member.getName();
         this.gpgsId = member.getGpgsId();
-        this.character_name = member.getCharacterName();
-        this.possesing_gem = member.getPossessingGold();
-        this.possesing_gold = member.getPossessingGold();
+        this.characterName = member.getCharacterName();
+        this.possesingGem = member.getPossessingGold();
+        this.possesingGold = member.getPossessingGold();
     }
 }
