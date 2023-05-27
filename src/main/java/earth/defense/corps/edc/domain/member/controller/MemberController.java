@@ -40,12 +40,12 @@ public class MemberController {
     }
 
     @PutMapping("/gem")
-    public ResponseEntity<ProfileMemberResponse> gemUpdate(@RequestParam("memberId" ) Long id, @RequestBody @Valid gemRequest request) {
+    public ResponseEntity<ProfileMemberResponse> gemUpdate(@RequestParam("gpgsId" ) String id, @RequestBody @Valid gemRequest request) {
         return ResponseEntity.ok().body(memberService.updateMemberGem(id, request));
     }
 
     @PutMapping("/gold")
-    public ResponseEntity<ProfileMemberResponse> goldUpdate(@RequestParam("memberId" ) Long id, @RequestBody @Valid goldRequest request) {
+    public ResponseEntity<ProfileMemberResponse> goldUpdate(@RequestParam("gpgsId" ) String id, @RequestBody @Valid goldRequest request) {
         return ResponseEntity.ok().body(memberService.updateMemberGold(id, request));
     }
 }

@@ -49,6 +49,9 @@ public class ItemService {
     @Transactional
     public ItemUpgradeResponse upgradeItem(Long itemId, ItemUpgradeRequest request) {
         BaseItem item = getById(itemId);
+        Member member = item.getMember();
+        int currentGold = member.getPossessingGold();
+        member.modifyMemberGold(currentGold - item.getUpgradePrice());
         item.itemUpgrade(request);
         return new ItemUpgradeResponse(item, new ResponseHeader(200, "아이템 수정(강화) 완료"));
     }
