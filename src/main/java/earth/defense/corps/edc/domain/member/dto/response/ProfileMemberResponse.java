@@ -23,7 +23,7 @@ public class ProfileMemberResponse {
         this.name = member.getName();
         this.gpgsId = member.getGpgsId();
         this.characterName = member.getCharacterName();
-        this.possesingGem = member.getPossessingGold();
+        this.possesingGem = member.getPossessingGem();
         this.possesingGold = member.getPossessingGold();
     }
 }

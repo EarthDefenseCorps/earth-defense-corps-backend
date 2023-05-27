@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ItemRegisterRequest{
-    private Long memberId;
+    private String gpgsId;
     private int itemSN;
     private Boolean isEquipped;
     private String name;

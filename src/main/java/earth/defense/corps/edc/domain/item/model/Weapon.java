@@ -27,14 +27,14 @@ public class Weapon extends BaseItem{
 
     private float criticalDamage;
 
-    private Weapon(String type, ItemRegisterRequest request, Member member) {
-        super(type, request, member);
+    private Weapon(ItemRegisterRequest request, Member member) {
+        super(request, member);
         this.attackDamage = request.getAttackDamage();
         this.criticalDamageProbability = request.getCriticalDamageProbability();
         this.criticalDamage = request.getCriticalDamage();
     }
-    public static Weapon of(String type, ItemRegisterRequest request, Member member) {
-        return new Weapon(type, request, member);
+    public static Weapon of(ItemRegisterRequest request, Member member) {
+        return new Weapon(request, member);
     }
 
     public void upgrade(ItemUpgradeRequest request, Member member) {

@@ -2,10 +2,7 @@ package earth.defense.corps.edc.domain.item.controller;
 
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
 import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
-import earth.defense.corps.edc.domain.item.dto.response.ItemDeleteResponse;
-import earth.defense.corps.edc.domain.item.dto.response.ItemListResponse;
-import earth.defense.corps.edc.domain.item.dto.response.ItemRegisterResponse;
-import earth.defense.corps.edc.domain.item.dto.response.ItemUpgradeResponse;
+import earth.defense.corps.edc.domain.item.dto.response.*;
 import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.domain.item.service.ItemService;
 import jakarta.validation.Valid;
@@ -29,11 +26,11 @@ public class ItemController {
     }
 
     @GetMapping("/inventory")
-    public ResponseEntity<ItemListResponse> getInventory(@RequestParam("memberId") Long id){
-        return ResponseEntity.ok().body(itemService.getItemListAll(id));
+    public ResponseEntity<ItemListResponse> getInventory(@RequestParam("gpgsId") String gpgsId){
+        return ResponseEntity.ok().body(itemService.getItemListAll(gpgsId));
     }
     @GetMapping("/inventory/all")
-    public ResponseEntity<ItemListResponse> getInventoryItemAll(@RequestParam("memberId") Long id){
+    public ResponseEntity<ItemListResponse> getInventoryItemAll(@RequestParam("gpgsId") String id){
         return ResponseEntity.ok().body(itemService.getItemListAll(id));
     }
     @PutMapping
@@ -46,4 +43,8 @@ public class ItemController {
         return ResponseEntity.ok().body(itemService.deleteItem(id));
     }
 
+    @PutMapping("/status")
+    public ResponseEntity<ItemResponse.ItemResponseDto> switchItem(@RequestParam("itemId") Long id) {
+        return ResponseEntity.ok().body(itemService.switchItem(id));
+    }
 }

@@ -6,7 +6,6 @@ import earth.defense.corps.edc.domain.member.dto.request.gemRequest;
 import earth.defense.corps.edc.domain.member.dto.request.goldRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
-import earth.defense.corps.edc.domain.stage.model.Stage;
 import earth.defense.corps.edc.global.ResponseHeader;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
 import earth.defense.corps.edc.domain.member.exception.MemberNotFoundException;
@@ -56,19 +55,19 @@ public class MemberService {
         return new ProfileMemberResponse(new ResponseHeader(200, "회원 정보 가져오기 성공"), member);
     }
 
-    public Member getMemberById(Long memberId) {
-        return memberRepository.findById(memberId).orElseThrow(MemberNotFoundException::new);
+    public Member getMemberById(String gpgsId) {
+        return memberRepository.findByGpgsId(gpgsId).orElseThrow(MemberNotFoundException::new);
     }
 
     @Transactional
-    public ProfileMemberResponse updateMemberGem(String gpgsId, gemRequest request) {
-        Member member = memberRepository.findByGpgsId(gpgsId).orElseThrow(MemberNotFoundException::new);
+    public ProfileMemberResponse updateMemberGem(String id, gemRequest request) {
+        Member member = memberRepository.findByGpgsId(id).orElseThrow(MemberNotFoundException::new);
         member.modifyMemberGem(request.getGem());
         return new ProfileMemberResponse(new ResponseHeader(200, "gem 변경 완료"), member);
     }
     @Transactional
-    public ProfileMemberResponse updateMemberGold(String gpgsId, goldRequest request) {
-        Member member = memberRepository.findByGpgsId(gpgsId).orElseThrow(MemberNotFoundException::new);
+    public ProfileMemberResponse updateMemberGold(String id, goldRequest request) {
+        Member member = memberRepository.findByGpgsId(id).orElseThrow(MemberNotFoundException::new);
         member.modifyMemberGold(request.getGold());
         return new ProfileMemberResponse(new ResponseHeader(200, "gold 변경 완료"), member);
     }
