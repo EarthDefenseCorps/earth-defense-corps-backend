@@ -18,11 +18,13 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 public class Shoes extends BaseItem{
 
-    private float strength;
+    private float attackDamage;
+    private float criticalDamageProbability;
 
     private Shoes(ItemRegisterRequest request, Member member) {
         super(request, member);
-        this.strength = request.getStrength();
+        this.attackDamage = request.getAttackDamage();
+        this.criticalDamageProbability = request.getCriticalDamageProbability();
     }
     public static Shoes of(ItemRegisterRequest request, Member member) {
         return new Shoes(request, member);
@@ -30,6 +32,7 @@ public class Shoes extends BaseItem{
 
     public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
-        this.strength = request.getStrength();
+        this.attackDamage = request.getAttackDamage();
+        this.criticalDamageProbability = request.getCriticalDamageProbability();
     }
 }

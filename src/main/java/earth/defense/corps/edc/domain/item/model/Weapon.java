@@ -41,5 +41,6 @@ public class Weapon extends BaseItem{
         super.upgrade(request, member);
         this.attackDamage = request.getAttackDamage();
         this.criticalDamageProbability = request.getCriticalDamageProbability();
+        this.criticalDamage = request.getCriticalDamage();
     }
 }
