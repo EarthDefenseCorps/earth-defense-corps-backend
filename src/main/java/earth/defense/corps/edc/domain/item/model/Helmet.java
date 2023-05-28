@@ -19,15 +19,15 @@ import org.hibernate.annotations.ColumnDefault;
 @Entity
 public class Helmet extends BaseItem{
 
-    private float defenseStrength;
 
 
     private float strength;
+    private float specialMoveGage;
 
     private Helmet(ItemRegisterRequest request, Member member){
         super(request, member);
         this.strength = request.getStrength();
-        this.defenseStrength = request.getDefenseStrength();
+        this.specialMoveGage = request.getSpecialMoveGage();
     }
     public static Helmet of(ItemRegisterRequest request, Member member) {
         return new Helmet( request, member);
@@ -35,6 +35,6 @@ public class Helmet extends BaseItem{
     public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
         this.strength = request.getStrength();
-        this.defenseStrength = request.getDefenseStrength();
+        this.specialMoveGage = request.getSpecialMoveGage();
     }
 }

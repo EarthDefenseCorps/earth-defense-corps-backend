@@ -20,11 +20,14 @@ public class Shield extends BaseItem{
 
     private float defenseStrength;
     private float specialMoveGage;
+    private float strength;
+
 
     private Shield(ItemRegisterRequest request, Member member) {
         super(request, member);
         this.defenseStrength = request.getDefenseStrength();
         this.specialMoveGage = request.getSpecialMoveGage();
+        this.strength = request.getStrength();
     }
     public static Shield of(ItemRegisterRequest request, Member member) {
         return new Shield(request, member);
@@ -34,5 +37,6 @@ public class Shield extends BaseItem{
         super.upgrade(request, member);
         this.defenseStrength = request.getDefenseStrength();
         this.specialMoveGage = request.getSpecialMoveGage();
+        this.strength = request.getStrength();
     }
 }
