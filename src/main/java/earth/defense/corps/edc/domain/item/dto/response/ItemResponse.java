@@ -25,7 +25,7 @@ public class ItemResponse {
         private int itemUpgrade;
         private boolean isEquipped;
         private ItemMemberInfoDto member;
-        private int attackDamage;
+        private float attackDamage;
         private float criticalDamageProbability;
         private float criticalDamage;
         private float strength;
@@ -54,26 +54,28 @@ public class ItemResponse {
                 case GLOVES -> {
                     Gloves gloves = (Gloves) baseItem;
                     this.attackDamage = gloves.getAttackDamage();
-                    this.criticalDamageProbability = gloves.getCriticalDamageProbability();
                     this.criticalDamage = gloves.getCriticalDamage();
                 }
                 case HELMET -> {
                     Helmet helmet = (Helmet) baseItem;
                     this.strength = helmet.getStrength();
-                    this.defenseStrength = helmet.getDefenseStrength();
+                    this.specialMoveGage = helmet.getSpecialMoveGage();
                 }
                 case SHIELD -> {
                     Shield shield = (Shield) baseItem;
                     this.defenseStrength = shield.getDefenseStrength();
                     this.specialMoveGage = shield.getSpecialMoveGage();
+                    this.strength = shield.getStrength();
                 }
                 case SHOES -> {
                     Shoes shoes = (Shoes) baseItem;
-                    this.strength = shoes.getStrength();
+                    this.attackDamage = shoes.getAttackDamage();
+                    this.criticalDamageProbability = shoes.getCriticalDamageProbability();
                 }
                 case WEAPON -> {
                     Weapon weapon = (Weapon) baseItem;
                     this.attackDamage = weapon.getAttackDamage();
+                    this.criticalDamage = weapon.getCriticalDamage();
                     this.criticalDamageProbability = weapon.getCriticalDamageProbability();
                 }
             }
