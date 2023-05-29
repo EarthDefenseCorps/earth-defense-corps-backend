@@ -8,5 +8,5 @@ public enum ItemGrade {
     RARE,
     EPIC,
     UNIQUE,
-    LEGEND
+    LEGENDARY
 }
