@@ -11,32 +11,28 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
-@Setter
-@Getter
-@DiscriminatorValue("Shield")
+@Getter @Setter
+@DiscriminatorValue("Armor")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Shield extends BaseItem{
+public class Armor extends BaseItem{
 
-    private float defenseStrength;
-    private float specialMoveGage;
     private float strength;
 
+    private float defenseStrength;
 
-    private Shield(ItemRegisterRequest request, Member member) {
+    private Armor(ItemRegisterRequest request, Member member) {
         super(request, member);
-        this.defenseStrength = request.getDefenseStrength();
-        this.specialMoveGage = request.getSpecialMoveGage();
         this.strength = request.getStrength();
+        this.defenseStrength = request.getDefenseStrength();
     }
-    public static Shield of(ItemRegisterRequest request, Member member) {
-        return new Shield(request, member);
+    public static Armor of(ItemRegisterRequest request, Member member) {
+        return new Armor(request, member);
     }
 
     public void upgrade(ItemUpgradeRequest request, Member member) {
         super.upgrade(request, member);
-        this.defenseStrength = request.getDefenseStrength();
-        this.specialMoveGage = request.getSpecialMoveGage();
         this.strength = request.getStrength();
+        this.defenseStrength = request.getDefenseStrength();
     }
 }
