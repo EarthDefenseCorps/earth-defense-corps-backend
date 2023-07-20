@@ -7,15 +7,13 @@ import earth.defense.corps.edc.domain.item.model.*;
 import earth.defense.corps.edc.domain.item.repository.*;
 import earth.defense.corps.edc.domain.member.model.Member;
 import earth.defense.corps.edc.domain.member.service.MemberService;
-import earth.defense.corps.edc.global.ResponseHeader;
+import earth.defense.corps.edc.global.common.dto.ResponseHeader;
 import earth.defense.corps.edc.domain.item.dto.response.ItemResponse.ItemResponseDto;
 
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.ArrayList;
 
 @Service
 @Transactional(readOnly = true)
@@ -27,7 +25,7 @@ public class ItemService {
     @Transactional
     public BaseItem save(ItemRegisterRequest request) {
         BaseItem item = new BaseItem();
-        Member member = memberService.findByGpgsId(request.getGpgsId());
+        Member member = memberService.getMemberById(request.getGpgsId());
         return itemRepository.save(item.itemSave(request, member));
     }
 

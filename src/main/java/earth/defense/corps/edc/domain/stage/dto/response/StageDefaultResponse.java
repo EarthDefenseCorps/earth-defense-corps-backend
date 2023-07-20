@@ -1,6 +1,6 @@
 package earth.defense.corps.edc.domain.stage.dto.response;
 
-import earth.defense.corps.edc.global.ResponseHeader;
+import earth.defense.corps.edc.global.common.dto.ResponseHeader;
 import lombok.Getter;
 
 @Getter

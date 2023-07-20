@@ -6,7 +6,7 @@ import earth.defense.corps.edc.domain.member.dto.request.gemRequest;
 import earth.defense.corps.edc.domain.member.dto.request.goldRequest;
 import earth.defense.corps.edc.domain.member.dto.response.LoginResponse;
 import earth.defense.corps.edc.domain.member.dto.response.ProfileMemberResponse;
-import earth.defense.corps.edc.global.ResponseHeader;
+import earth.defense.corps.edc.global.common.dto.ResponseHeader;
 import earth.defense.corps.edc.domain.member.dto.response.SignUpResponse;
 import earth.defense.corps.edc.domain.member.exception.MemberNotFoundException;
 import earth.defense.corps.edc.domain.member.model.Member;
@@ -51,7 +51,7 @@ public class MemberService {
     }
 
     public ProfileMemberResponse getInfo(String request) {
-        Member member = memberRepository.findByGpgsId(request).orElseThrow(MemberNotFoundException::new);
+        Member member = getMemberById(request);
         return new ProfileMemberResponse(new ResponseHeader(200, "회원 정보 가져오기 성공"), member);
     }
 
@@ -70,8 +70,5 @@ public class MemberService {
         Member member = memberRepository.findByGpgsId(id).orElseThrow(MemberNotFoundException::new);
         member.modifyMemberGold(request.getGold());
         return new ProfileMemberResponse(new ResponseHeader(200, "gold 변경 완료"), member);
-    }
-    public Member findByGpgsId(String givenId){
-        return memberRepository.findByGpgsId(givenId).orElseThrow(MemberNotFoundException::new);
     }
 }

@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 @Getter
@@ -35,7 +36,7 @@ public class Stage {
     @Column(name="PHASE")
     private StagePhase phase;
     private int stage;
-
+    @Builder
     private Stage(boolean isClear, StagePhase stagePhase, Member member) {
         this.isClear = isClear;
         this.phase = stagePhase;
@@ -43,7 +44,11 @@ public class Stage {
         this.stage = stagePhase.getEnumPhase();
     }
     public static Stage of(boolean is_clear, StagePhase stagePhase, Member member) {
-        return new Stage(is_clear, stagePhase, member);
+        return Stage.builder()
+            .isClear(is_clear)
+            .stagePhase(stagePhase)
+            .member(member)
+            .build();
     }
 
     public void modifyStageClear(boolean isClear, StagePhase stagePhase, Member member) {
