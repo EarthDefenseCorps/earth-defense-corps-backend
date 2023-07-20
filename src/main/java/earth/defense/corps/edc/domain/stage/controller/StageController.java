@@ -6,14 +6,11 @@ import earth.defense.corps.edc.domain.member.repository.MemberRepository;
 import earth.defense.corps.edc.domain.stage.dto.request.StageClearRequest;
 import earth.defense.corps.edc.domain.stage.dto.response.StageClearResponse;
 import earth.defense.corps.edc.domain.stage.dto.response.StageListResponse;
-import earth.defense.corps.edc.domain.stage.model.Stage;
 import earth.defense.corps.edc.domain.stage.model.StagePhase;
 import earth.defense.corps.edc.domain.stage.service.StageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/stage")
@@ -35,7 +32,7 @@ public class StageController {
         StageClearResponse response = stageService.setStageClear(member,StagePhase.getPhaseByInt(request.getStage()));
         return ResponseEntity.ok().body(response);
     }
-    @PutMapping("/cleared") //@PutMapping("/clear/{level}") , header email
+    @PatchMapping("/cleared")
     public ResponseEntity<StageClearResponse> stageClear(@RequestBody StageClearRequest request) {
         return ResponseEntity.ok().body(stageService.setStageClear(request));
     }

@@ -1,4 +1,4 @@
-package earth.defense.corps.edc.global;
+package earth.defense.corps.edc.global.common.dto;
 
 
 import lombok.AllArgsConstructor;

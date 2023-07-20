@@ -17,8 +17,6 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-*.yml
-
 ### IntelliJ IDEA ###
 .idea
 *.iws
@@ -40,7 +38,7 @@ out/
 
 
 ### applicationsyml ###
-src/main/resources/application.yml
+src/main/resources/application-credentials.yml
 
 ### MAC OS ###
 *.DS_Store

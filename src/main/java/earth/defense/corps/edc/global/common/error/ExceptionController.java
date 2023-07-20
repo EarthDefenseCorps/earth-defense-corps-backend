@@ -5,6 +5,7 @@ import jakarta.persistence.NoResultException;
 import java.security.SignatureException;
 import javax.naming.ServiceUnavailableException;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,12 +22,17 @@ public class ExceptionController {
         e.printStackTrace();
         return ApiResponse.error(500,"서버 로직 에러 :"+ e);
     }
-
     @ExceptionHandler(MissingRequestHeaderException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse MissingRequestHeaderException(Exception e) {
         e.printStackTrace();
         return ApiResponse.error(400,"MissingRequestHeaderException");
+    }
+    @ExceptionHandler(MissingPathVariableException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse MissingPathVariableException(Exception e) {
+        e.printStackTrace();
+        return ApiResponse.error(404,"[잘못된 경로 입니다.]"+e);
     }
     @ExceptionHandler(SignatureException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

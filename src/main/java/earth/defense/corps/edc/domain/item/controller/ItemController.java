@@ -3,15 +3,12 @@ package earth.defense.corps.edc.domain.item.controller;
 import earth.defense.corps.edc.domain.item.dto.request.ItemRegisterRequest;
 import earth.defense.corps.edc.domain.item.dto.request.ItemUpgradeRequest;
 import earth.defense.corps.edc.domain.item.dto.response.*;
-import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.domain.item.service.ItemService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/item")

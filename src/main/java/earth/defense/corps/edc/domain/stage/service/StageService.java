@@ -8,14 +8,12 @@ import earth.defense.corps.edc.domain.stage.dto.response.StageListResponse;
 import earth.defense.corps.edc.domain.stage.model.Stage;
 import earth.defense.corps.edc.domain.stage.model.StagePhase;
 import earth.defense.corps.edc.domain.stage.repository.StageRepository;
-import earth.defense.corps.edc.global.ResponseHeader;
+import earth.defense.corps.edc.global.common.dto.ResponseHeader;
 import earth.defense.corps.edc.global.error.exception.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional(readOnly = true)

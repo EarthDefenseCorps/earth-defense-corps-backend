@@ -1,9 +1,8 @@
 package earth.defense.corps.edc.domain.item.dto.response;
 
 import earth.defense.corps.edc.domain.item.model.BaseItem;
-import earth.defense.corps.edc.global.ResponseHeader;
+import earth.defense.corps.edc.global.common.dto.ResponseHeader;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 public class ItemUpgradeResponse {
