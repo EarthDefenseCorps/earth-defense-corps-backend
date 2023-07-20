@@ -98,7 +98,6 @@ public class BaseItem {
         };
     }
 
-
     public void updateMemberGold(Boolean plus) {
         if(plus) {
             this.member.updateMemberGoldByItemPrice(this.price);
@@ -108,4 +107,11 @@ public class BaseItem {
         }
     }
 
+    public void itemEquipStatus() {
+        if(this.isEquipped()){
+            this.unEquipItem();
+        }else {
+            this.equipItem();
+        }
+    }
 }

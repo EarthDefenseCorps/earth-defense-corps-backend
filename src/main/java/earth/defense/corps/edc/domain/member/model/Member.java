@@ -5,6 +5,8 @@ import earth.defense.corps.edc.domain.item.model.BaseItem;
 import earth.defense.corps.edc.domain.stage.model.Stage;
 import earth.defense.corps.edc.domain.stage.model.StagePhase;
 import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,7 +40,7 @@ public class Member {
 
     @JsonIgnore
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-    private List<Stage> stageClearList = new ArrayList<>();
+    private Set<Stage> stageClearList = new HashSet<>();
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<BaseItem> items = new ArrayList<>();
@@ -65,6 +67,9 @@ public class Member {
 
     public void modifyMemberGold(int gold) {
         this.possessingGold = gold;
+    }
+    public void decreaseMemberGoldByUpgradeItem(BaseItem item) {
+        this.possessingGold = this.possessingGold - item.getUpgradePrice();
     }
     public void  initStageList(){
         for (StagePhase phase : StagePhase.values()) {

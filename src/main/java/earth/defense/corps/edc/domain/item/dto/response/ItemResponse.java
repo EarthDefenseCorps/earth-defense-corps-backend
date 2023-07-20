@@ -42,10 +42,10 @@ public class ItemResponse {
             this.itemUpgrade = baseItem.getItemUpgrade();
             this.isEquipped = baseItem.isEquipped();
             this.itemGrade = baseItem.getItemGrade();
-            this.type = baseItem.getType();
             this.member = new ItemMemberInfoDto(baseItem.getMember());
 
-            switch (type) {
+            this.type = baseItem.getType();
+            switch (this.type) {
                 case ARMOR -> {
                     Armor armor = (Armor) baseItem;
                     this.strength = armor.getStrength();

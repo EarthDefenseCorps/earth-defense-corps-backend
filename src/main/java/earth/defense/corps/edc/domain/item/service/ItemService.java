@@ -46,21 +46,10 @@ public class ItemService {
     public ItemUpgradeResponse upgradeItem(Long itemId, ItemUpgradeRequest request) {
         BaseItem item = getById(itemId);
         Member member = item.getMember();
-        int currentGold = member.getPossessingGold();
-        member.modifyMemberGold(currentGold - item.getUpgradePrice());
+        member.decreaseMemberGoldByUpgradeItem(item);
         item.itemUpgrade(request);
         return new ItemUpgradeResponse(item, new ResponseHeader(200, "아이템 수정(강화) 완료"));
     }
-
-//    @Transactional
-//    public ItemDeleteResponse deleteItem(Long itemId) {
-//        BaseItem item = getById(itemId);
-//        Member member = item.getMember();
-//        int currentGold = member.getPossessingGold();
-//        member.modifyMemberGold(currentGold + item.getPrice());
-//        itemRepository.deleteById(itemId);
-//        return new ItemDeleteResponse(new ResponseHeader(200, "아이템 삭제 완료"));
-//    }
     @Transactional
     public ItemDeleteResponse deleteItem(Long itemId) {
         BaseItem item = getById(itemId);
@@ -71,11 +60,7 @@ public class ItemService {
     @Transactional
     public ItemResponseDto switchItem(Long itemId) {
         BaseItem item = getById(itemId);
-        if(item.isEquipped()){
-            item.unEquipItem();
-        }else {
-            item.equipItem();
-        }
+        item.itemEquipStatus();
         return new ItemResponseDto(item);
     }
 }
