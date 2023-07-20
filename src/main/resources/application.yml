@@ -1,5 +1,6 @@
 #application-credentials.yml  파일을 만들어 다음 값들을 저장하자.
 #Db_User_Name , Db_User_PassWord , Db_URL ,Db_Name
+#ex) Db_URL : 127.0.0.1:3306
 
 
 server:
