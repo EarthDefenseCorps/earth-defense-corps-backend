@@ -11,7 +11,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Getter
 @DiscriminatorValue("Armor")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

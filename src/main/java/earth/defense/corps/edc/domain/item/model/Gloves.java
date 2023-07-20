@@ -9,9 +9,8 @@ import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
-@Setter
+
+
 @Getter
 @DiscriminatorValue("Gloves")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
