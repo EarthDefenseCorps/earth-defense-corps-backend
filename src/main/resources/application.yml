@@ -2,7 +2,6 @@
 #Db_User_Name , Db_User_PassWord , Db_URL ,Db_Name
 #ex) Db_URL : 127.0.0.1:3306
 
-
 server:
   port: 8080
   servlet:
@@ -32,17 +31,14 @@ spring:
     database: mysql
     generate-ddl: false
     #open-in-view: false
-
-
   mvc:
     path match:
       matching-strategy: ant_path_matcher
-
   config.import: classpath:application-credentials.yml
-    profiles:
-      active: credentials
-      include:
-        - credentials
+  profiles:
+    active: credentials
+    include:
+      - credentials
 
 # cors 설정
 cors:

@@ -28,8 +28,6 @@ public class ItemService {
         Member member = memberService.getMemberById(request.getGpgsId());
         return itemRepository.save(item.itemSave(request, member));
     }
-
-    @Transactional
     public ItemRegisterResponse saveItem(ItemRegisterRequest request) {
         BaseItem item = save(request);
         return new ItemRegisterResponse(item.getId(), new ResponseHeader(200, "아이템 등록 성공"));

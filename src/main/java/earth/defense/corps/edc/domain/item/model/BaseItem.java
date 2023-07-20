@@ -15,13 +15,13 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")
 @Getter
-@Setter
+@NoArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Entity
 public class BaseItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,104 +40,64 @@ public class BaseItem {
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     private Member member;
 
-    public BaseItem() {
+    private BaseItem(String name, int itemSN, String itemDesc, int price, int upgradePrice,
+        ItemType type, ItemGrade itemGrade, int itemUpgrade, boolean equipped) {
+        this.name = name;
+        this.itemSN = itemSN;
+        this.itemDesc = itemDesc;
+        this.price = price;
+        this.upgradePrice = upgradePrice;
+        this.type = type;
+        this.itemGrade = itemGrade;
+        this.itemUpgrade = itemUpgrade;
+        this.isEquipped = equipped;
     }
-
+    public static BaseItem of(BaseItem item) {
+        return new BaseItem(item);
+    }
+    protected BaseItem(ItemRegisterRequest request, Member member) {
+        this(request.getName(), request.getItemSN(), request.getItemDesc(), request.getPrice(),
+            request.getUpgradePrice(), ItemType.valueOf(request.getItemType()),
+            ItemGrade.valueOf(request.getItemGrade()), request.getItemUpgrade(),
+            request.getIsEquipped());
+        this.member = member;
+    }
     public void equipItem() {
         this.isEquipped = true;
     }
     public void unEquipItem() {
         this.isEquipped = false;
     }
-
-    public static BaseItem of(BaseItem item) {
-        return new BaseItem(item);
-    }
-
-    protected BaseItem(ItemRegisterRequest request, Member member) {
-        this.name = request.getName();
-        this.itemSN = request.getItemSN();
-        this.itemDesc = request.getItemDesc();
-        this.price = request.getPrice();
-        this.upgradePrice = request.getUpgradePrice();
-        this.type = ItemType.valueOf(request.getItemType());
-        this.itemGrade = ItemGrade.valueOf(request.getItemGrade());
-        this.itemUpgrade = request.getItemUpgrade();
-        this.member = member;
-        this.isEquipped = request.getIsEquipped();
-    }
     protected BaseItem(BaseItem item) {
-        this.id = item.id;
-        this.name = item.getName();
-        this.itemSN = item.getItemSN();
-        this.itemDesc = item.getItemDesc();
-        this.price = item.getPrice();
-        this.upgradePrice = item.getUpgradePrice();
-        this.type = item.getType();
-        this.itemGrade = item.getItemGrade();
-        this.itemUpgrade = item.getItemUpgrade();
-        this.isEquipped = item.isEquipped();
+        this(item.getName(), item.getItemSN(), item.getItemDesc(), item.getPrice(),
+            item.getUpgradePrice(), item.getType(),
+            item.getItemGrade(), item.getItemUpgrade(),
+            item.isEquipped());
+        this.id = item.getId();
     }
+
     protected void upgrade(ItemUpgradeRequest request, Member member) {
         this.price = request.getPrice();
         this.itemUpgrade = request.getItemUpgrade();
         this.upgradePrice = request.getUpgradePrice();
         this.member = member;
     }
-    public void itemUpgrade(ItemUpgradeRequest request)
-    {
-        switch (this.getType()) {
-            case ARMOR -> {
-                Armor armor = (Armor) this;
-                armor.upgrade(request, this.member);
-            }
-            case GLOVES -> {
-                Gloves gloves = (Gloves) this;
-                gloves.upgrade(request, this.member);
-            }
-            case HELMET -> {
-                Helmet helmet = (Helmet) this;
-                helmet.upgrade(request, this.member);
-            }
-            case SHIELD -> {
-                Shield shield = (Shield) this;
-                shield.upgrade(request, this.member);
-            }
-            case SHOES -> {
-                Shoes shoes = (Shoes) this;
-                shoes.upgrade(request,this. member);
-            }
-            case WEAPON -> {
-                Weapon weapon = (Weapon) this;
-                weapon.upgrade(request, this.member);
-            }
-        }
+    public void itemUpgrade(ItemUpgradeRequest request) {
+        this.upgrade(request, this.member);
     }
 
     public BaseItem itemSave(ItemRegisterRequest request, Member member) {
         ItemType type = ItemType.valueOf(request.getItemType());
-        switch (type) {
-            case ARMOR -> {
-                return Armor.of(request, member);
-            }
-            case GLOVES -> {
-                return Gloves.of(request, member);
-            }
-            case HELMET -> {
-                return Helmet.of(request, member);
-            }
-            case SHIELD -> {
-                return Shield.of(request, member);
-            }
-            case SHOES -> {
-                return Shoes.of(request, member);
-            }
-            case WEAPON -> {
-                return Weapon.of(request, member);
-            }
-        }
-        return null;
+        return switch (type) {
+            case ARMOR -> Armor.of(request, member);
+            case GLOVES -> Gloves.of(request, member);
+            case HELMET -> Helmet.of(request, member);
+            case SHIELD -> Shield.of(request, member);
+            case SHOES -> Shoes.of(request, member);
+            case WEAPON -> Weapon.of(request, member);
+        };
     }
+
 
     public void updateMemberGold(Boolean plus) {
         if(plus) {
