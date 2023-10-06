@@ -4,10 +4,10 @@ Play Store : https://play.google.com/store/apps/details?id=com.devurim.earthdefe
 -----------------
 
 ## TEAM 지구방위대 개발팀 👨‍👨‍👧‍👦
-| ![image]()                                  | ![image](https://user-images.githubusercontent.com/105579811/226158691-dca8e766-38c8-4c26-b336-a01f4321e3a2.jpg) | ![image](https://user-images.githubusercontent.com/105579811/226158703-7557808d-2274-441b-b3d9-80a56c3bf6cc.jpeg) |
+| <img src="https://avatars.githubusercontent.com/u/77566434?v=4" width=1250px alt="강동현"/> | ![image](https://user-images.githubusercontent.com/105579811/226158691-dca8e766-38c8-4c26-b336-a01f4321e3a2.jpg) | ![image](https://user-images.githubusercontent.com/105579811/226158703-7557808d-2274-441b-b3d9-80a56c3bf6cc.jpeg) |
 |---------------------------------------------|------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
 | 강동현([@hyeon23](https://github.com/hyeon23)) | 윤병욱([@speculatingwook](https://github.com/speculatingwook))                                                      | 조성현([@chosunghyun18](https://github.com/chosunghyun18))                                                           |
-| Leader / game                               | Backend                                                                                                          | Back End                                                                                                          |
+| Leader / Design & Game Client                               | Backend                                                                                                          | Back End                                                                                                          |
 
 
 ## 프로젝트(게임) 개요
