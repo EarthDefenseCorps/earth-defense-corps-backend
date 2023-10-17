@@ -1,6 +1,12 @@
 # <img src="./img/지구방위대.png" alt="image" width="50" height="50" />  지구를 지켜라! 지구방위대 🔫
+
+<img width="1628" alt="playStore" src="https://github.com/EarthDefenseCorps/earth-defense-corps-backend/assets/37647483/dd137a4e-bcf0-4e15-8e07-21e364cd3c5f">
+
+
 ### 🌕 우주인들을 막는 종스크롤 액션 게임 🌎 
+
 Play Store : https://play.google.com/store/apps/details?id=com.devurim.earthdefensecorps&hl=ko-KR
+
 -----------------
 
 ## TEAM 지구방위대 개발팀 👨‍👨‍👧‍👦
